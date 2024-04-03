@@ -28,7 +28,7 @@ app.use(morgan('dev'));
 
 // * ROUTES
 ///////////
-app.use('api/v1/auth', authRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 // * REST APIs
 /////////////
