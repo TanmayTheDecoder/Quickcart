@@ -135,3 +135,9 @@ export const loginController = async (req, res) => {
 		});
 	}
 };
+
+// * PRIVATE ROUTE
+//////////////////
+export const privateController = (req, res) => {
+	res.send('This is a Private Route');
+};

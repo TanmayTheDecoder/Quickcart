@@ -1,6 +1,14 @@
 import express from 'express';
-import { registerController } from '../controllers/authController.js';
-import { loginController } from '../controllers/authController.js';
+import {
+	registerController,
+	loginController,
+	privateController,
+} from '../controllers/authController.js';
+import {
+	adminMiddleware,
+	requireSignIn,
+} from '../middlewares/authMiddleware.js';
+
 // * ROUTER OBJECT
 //////////////////
 const router = express.Router();
@@ -14,5 +22,9 @@ router.post('/register', registerController);
 // * LOGIN || METHOD = POST
 ///////////////////////////
 router.post('/login', loginController);
+
+// * PROTECTED ROUTE || METHOD = GET
+////////////////////////////////////
+router.get('/private', requireSignIn, adminMiddleware, privateController);
 
 export default router;
