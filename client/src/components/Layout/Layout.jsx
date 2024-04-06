@@ -3,6 +3,8 @@ import Header from '../common/Header';
 import Footer from '../common/Footer';
 import '../../assets/styles/layout.css';
 import { Helmet } from 'react-helmet';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = ({ children, title, description, keywords, author }) => {
 	return (
@@ -17,7 +19,10 @@ const Layout = ({ children, title, description, keywords, author }) => {
 				</div>
 			</Helmet>
 			<Header />
-			<main className='content-area'>{children}</main>
+			<main className='content-area'>
+				<ToastContainer />
+				{children}
+			</main>
 			<Footer />
 		</div>
 	);

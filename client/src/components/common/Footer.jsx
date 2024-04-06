@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
 	return (
 		<div className='footer'>
-			<h6>2024 &copy; Quickcart All Rights Reserved.</h6>
+			<h4>2024 &copy; Quickcart All Rights Reserved.</h4>
 			<ul className='footer-nav-links'>
 				<li>
 					<Link to='/about'>About</Link>
