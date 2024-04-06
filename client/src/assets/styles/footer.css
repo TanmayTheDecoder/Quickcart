@@ -1,0 +1,24 @@
+.footer {
+    padding: 1.2rem;
+    background-color: rgb(46, 46, 46);
+    color: white;
+    display: flex;
+    gap: 10rem;
+    text-align: center;
+    justify-content: center;
+}
+
+.footer h6 {
+    margin: 0;
+}
+
+.footer-nav-links {
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-nav-links a {
+    color: white;
+}

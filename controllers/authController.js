@@ -103,6 +103,8 @@ export const loginController = async (req, res) => {
 			});
 		}
 
+		// * COMPARING PASSWORD
+		///////////////////////
 		const match = await comparePassword(password, user.password);
 		if (!match) {
 			res.status(200).send({
