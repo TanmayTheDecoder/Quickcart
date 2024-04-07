@@ -4,6 +4,7 @@ import chalk from 'chalk';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
+import cors from 'cors';
 
 // * DOTENV CONFIGURATION
 /////////////////////////
@@ -23,6 +24,10 @@ const app = express();
 
 // * MIDDLEWARES
 ////////////////
+app.use(cors({
+	origin: 'http://localhost:3000/',
+	methods: ['GET', 'POST']
+}));
 app.use(express.json());
 app.use(morgan('dev'));
 

@@ -4,6 +4,8 @@ import FormGroup from '../../components/common/FormGroup';
 import { FilledButton } from '../../components/common/Button';
 import '../../assets/styles/registration.css';
 import { toast } from 'react-toastify';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
 	const defaultData = {
@@ -14,14 +16,26 @@ const Registration = () => {
 		address: '',
 	};
 	const [fieldData, setFieldData] = useState(defaultData);
-
+	const navigate = useNavigate();
 	const handleFieldChange = (e) => {
 		setFieldData({ ...fieldData, [e.target.name]: e.target.value });
 	};
-
-	const handleSubmit = () => {
-		toast.success('Registration Successful');
-		console.log('Data is :', fieldData);
+	const handleSubmit = async () => {
+		try {
+			const data = await axios.post(
+				`${process.env.REACT_APP_API}/api/v1/auth/register`,
+				fieldData
+			);
+			if (data?.success) {
+				navigate('/login');
+				toast.success(data.message);
+			} else {
+				toast.error(data.message);
+			}
+		} catch (error) {
+			console.log('Received error', error);
+			toast.error('Something went wrong!');
+		}
 	};
 
 	return (
@@ -70,7 +84,7 @@ const Registration = () => {
 								handleFieldChange(e);
 							}}
 							value={fieldData.password}
-							type={'text'}
+							type={'password'}
 						/>
 					</div>
 					<FormGroup
