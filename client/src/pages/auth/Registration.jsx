@@ -20,9 +20,10 @@ const Registration = () => {
 	const handleFieldChange = (e) => {
 		setFieldData({ ...fieldData, [e.target.name]: e.target.value });
 	};
+
 	const handleSubmit = async () => {
 		try {
-			const data = await axios.post(
+			const { data } = await axios.post(
 				`${process.env.REACT_APP_API}/api/v1/auth/register`,
 				fieldData
 			);
@@ -34,7 +35,7 @@ const Registration = () => {
 			}
 		} catch (error) {
 			console.log('Received error', error);
-			toast.error('Something went wrong!');
+			toast.error(error);
 		}
 	};
 

@@ -1,4 +1,5 @@
 import express from 'express';
+import http from 'http';
 import morgan from 'morgan';
 import chalk from 'chalk';
 import dotenv from 'dotenv';
@@ -21,13 +22,18 @@ connectDB();
 // * REST OBJECT
 ///////////////
 const app = express();
+const server = http.createServer(app);
 
 // * MIDDLEWARES
 ////////////////
-app.use(cors({
-	origin: 'http://localhost:3000/',
-	methods: ['GET', 'POST']
-}));
+app.use(
+	cors({
+		credentials: true,
+		allowedHeaders: true,
+		origin: 'http://localhost:3000/',
+		methods: ['GET', 'POST', 'PUT', 'DELETE'],
+	})
+);
 app.use(express.json());
 app.use(morgan('dev'));
 
@@ -36,15 +42,15 @@ app.use(morgan('dev'));
 app.use('/api/v1/auth', authRoutes);
 
 // * REST APIs
-/////////////
+//////////////
 app.get('/', (req, res) => {
 	res.send('<h1>Welcome to Quickcart</h1>');
 });
 
 // * LISTEN
 ///////////
-app.listen(PORT, () => {
+server.listen(PORT, () => {
 	console.log(
-		chalk.bgGreenBright.white.bold(`Server is listening on port ${PORT}`),
+		chalk.bgGreenBright.white.bold(`Server is listening on port ${PORT}`)
 	);
 });
