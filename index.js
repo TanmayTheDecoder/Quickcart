@@ -24,11 +24,8 @@ const app = express();
 
 // * MIDDLEWARES
 ////////////////
-app.use(cors({
-	origin: 'http://localhost:3000/',
-	methods: ['GET', 'POST']
-}));
 app.use(express.json());
+app.use(cors('*'));
 app.use(morgan('dev'));
 
 // * ROUTES
@@ -45,6 +42,6 @@ app.get('/', (req, res) => {
 ///////////
 app.listen(PORT, () => {
 	console.log(
-		chalk.bgGreenBright.white.bold(`Server is listening on port ${PORT}`),
+		chalk.bgGreenBright.white.bold(`Server is listening on port ${PORT}`)
 	);
 });

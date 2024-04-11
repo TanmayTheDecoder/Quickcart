@@ -1,6 +1,14 @@
 import React from 'react';
 import '../../assets/styles/formgroup.css';
-const FormGroup = ({ label, type, placeholder, value, name, onChange }) => {
+const FormGroup = ({
+	label,
+	type,
+	placeholder,
+	value,
+	name,
+	onChange,
+	required,
+}) => {
 	return (
 		<>
 			<div className='formgroup-container'>
@@ -14,6 +22,7 @@ const FormGroup = ({ label, type, placeholder, value, name, onChange }) => {
 					onChange={(e) => {
 						onChange(e);
 					}}
+					required={required}
 				/>
 			</div>
 		</>

@@ -26,7 +26,7 @@ const Registration = () => {
 				`${process.env.REACT_APP_API}/api/v1/auth/register`,
 				fieldData
 			);
-			if (data?.success) {
+			if (data?.status === 201 && data?.success) {
 				navigate('/login');
 				toast.success(data.message);
 			} else {
@@ -53,6 +53,7 @@ const Registration = () => {
 							}}
 							type={'text'}
 							value={fieldData.username}
+							required
 						/>
 						<FormGroup
 							label={'Phone'}
@@ -63,6 +64,7 @@ const Registration = () => {
 							}}
 							value={fieldData.phone}
 							type={'text'}
+							required
 						/>
 					</div>
 					<div className='row'>
@@ -74,7 +76,8 @@ const Registration = () => {
 								handleFieldChange(e);
 							}}
 							value={fieldData.email}
-							type={'text'}
+							type={'email'}
+							required
 						/>
 						<FormGroup
 							label={'Password'}
@@ -85,6 +88,7 @@ const Registration = () => {
 							}}
 							value={fieldData.password}
 							type={'password'}
+							required
 						/>
 					</div>
 					<FormGroup
@@ -96,6 +100,7 @@ const Registration = () => {
 						}}
 						value={fieldData.address}
 						type={'text'}
+						required
 					/>
 					<FilledButton
 						text={'Register'}

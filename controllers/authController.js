@@ -15,21 +15,25 @@ export const registerController = async (req, res) => {
 				message: 'Name is required!',
 			});
 		}
+
 		if (!email) {
 			return res.send({
 				message: 'Email is required!',
 			});
 		}
+
 		if (!password) {
 			return res.send({
 				message: 'Password is required!',
 			});
 		}
+
 		if (!phone) {
 			return res.send({
 				message: 'Phone is required!',
 			});
 		}
+
 		if (!address) {
 			return res.send({
 				message: 'Address is required!',
@@ -38,7 +42,7 @@ export const registerController = async (req, res) => {
 
 		// * CHECKING USER
 		//////////////////
-		const existingUser = userModal.findOne({ email });
+		const existingUser = await userModal.findOne({ email });
 
 		// * EXISTING USER
 		//////////////////
