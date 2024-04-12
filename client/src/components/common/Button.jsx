@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/styles/button.css';
+import '../../assets/styles/common/button.css';
 export const OutlinedButton = ({ text, onClick }) => {
 	return (
 		<button className='outlined-button' onClick={onClick}>

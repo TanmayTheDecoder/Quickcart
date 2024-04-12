@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../assets/styles/formgroup.css';
+import '../../assets/styles/common/formgroup.css';
 const FormGroup = ({
 	label,
 	type,
