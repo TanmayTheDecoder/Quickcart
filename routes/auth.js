@@ -27,4 +27,10 @@ router.post('/login', loginController);
 ////////////////////////////////////
 router.get('/private', requireSignIn, adminMiddleware, privateController);
 
+// * PRIVATE ROUTE
+//////////////////
+router.get('/user-auth', requireSignIn, (req, res) => {
+	res.status(200).send({ ok: true });
+});
+
 export default router;

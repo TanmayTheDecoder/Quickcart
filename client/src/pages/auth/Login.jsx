@@ -5,6 +5,7 @@ import { FilledButton } from '../../components/common/Button';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { useAuth } from '../../context/auth';
 
 const Login = () => {
 	const defaultData = {
@@ -13,6 +14,7 @@ const Login = () => {
 	};
 	const [fieldData, setFieldData] = useState(defaultData);
 	const navigate = useNavigate();
+	const [auth, setAuth] = useAuth();
 
 	const handleFieldChange = (e) => {
 		setFieldData({ ...fieldData, [e.target.name]: e.target.value });
@@ -27,6 +29,12 @@ const Login = () => {
 			if (res && res.data?.success === true) {
 				navigate('/');
 				toast.success(res.data.message);
+				setAuth({
+					...auth,
+					user: res.data.user,
+					token: res.data?.token,
+				});
+				localStorage.setItem('auth', JSON.stringify(res.data));
 			} else {
 				toast.error(res.data.message);
 			}
