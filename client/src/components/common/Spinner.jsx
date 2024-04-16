@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { HashLoader } from 'react-spinners';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const overrides = {
 	display: 'block',
@@ -11,12 +11,16 @@ const overrides = {
 const Spinner = () => {
 	const [count, setCount] = useState(5);
 	const navigate = useNavigate();
-
+	const location = useLocation();
+	
 	useEffect(() => {
 		const timer = setInterval(() => {
 			setCount((prevCount) => --prevCount);
 		}, 1000);
-		count === 0 && navigate('/login');
+		count === 0 &&
+			navigate('/login', {
+				state: location.pathname,
+			});
 		return () => clearInterval(timer);
 	}, [count, navigate]);
 

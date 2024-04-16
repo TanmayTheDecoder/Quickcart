@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 import FormGroup from '../../components/common/FormGroup';
 import { FilledButton } from '../../components/common/Button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import { useAuth } from '../../context/auth';
@@ -13,8 +13,9 @@ const Login = () => {
 		password: '',
 	};
 	const [fieldData, setFieldData] = useState(defaultData);
-	const navigate = useNavigate();
 	const [auth, setAuth] = useAuth();
+	const navigate = useNavigate();
+	const location = useLocation();
 
 	const handleFieldChange = (e) => {
 		setFieldData({ ...fieldData, [e.target.name]: e.target.value });
@@ -27,7 +28,7 @@ const Login = () => {
 				fieldData
 			);
 			if (res && res.data?.success === true) {
-				navigate('/');
+				navigate(location.state || '/');
 				toast.success(res.data.message);
 				setAuth({
 					...auth,

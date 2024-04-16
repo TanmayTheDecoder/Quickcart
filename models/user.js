@@ -30,8 +30,12 @@ const userSchema = new Schema(
 			type: Number,
 			default: 0,
 		},
+		answer: {
+			type: String,
+			required: true,
+		},
 	},
-	{ timestamps: true },
+	{ timestamps: true }
 );
 
 export default mongoose.model('users', userSchema);

@@ -3,7 +3,8 @@ import {
 	registerController,
 	loginController,
 	privateController,
-} from '../controllers/authController.js';
+	forgotPasswordController,
+} from '../controllers/authControllers.js';
 import {
 	adminMiddleware,
 	requireSignIn,
@@ -22,6 +23,10 @@ router.post('/register', registerController);
 // * LOGIN || METHOD = POST
 ///////////////////////////
 router.post('/login', loginController);
+
+// * FORGOT PASSWORD
+////////////////////
+router.post('/forgotPassword', forgotPasswordController);
 
 // * PROTECTED ROUTE || METHOD = GET
 ////////////////////////////////////

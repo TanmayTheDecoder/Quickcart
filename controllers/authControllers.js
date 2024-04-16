@@ -142,6 +142,43 @@ export const loginController = async (req, res) => {
 	}
 };
 
+// * FORGOT PASSWORD || METHOD : POST
+/////////////////////////////////////
+export const forgotPasswordController = async (req, res) => {
+	try {
+		const { email, answer, newPassword } = req.body;
+
+		// * VALIDATIONS
+		////////////////
+		if (!email) {
+			return res.status(400).send({
+				message: 'Email is required',
+			});
+		}
+		if (!answer) {
+			return res.status(400).send({
+				message: 'Answer is required',
+			});
+		}
+		if (!newPassword) {
+			return res.status(400).send({
+				message: 'New Password is required',
+			});
+		}
+
+		// * CHECKING USER
+		//////////////////
+		
+
+	} catch (error) {
+		res.status(500).send({
+			success: false,
+			message: 'Something went wrong',
+			error,
+		});
+	}
+};
+
 // * PRIVATE ROUTE
 //////////////////
 export const privateController = (req, res) => {
