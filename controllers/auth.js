@@ -124,3 +124,9 @@ export const loginController = async (req, res) => {
 		});
 	}
 };
+
+// * PROTECTED || METHOD: GET
+/////////////////////////////
+export const protectedController = async (req, res) => {
+	res.send('Protected Route');
+};
