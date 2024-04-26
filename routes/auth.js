@@ -4,7 +4,7 @@ import {
 	loginController,
 	protectedController,
 } from '../controllers/auth.js';
-import { requireSignIn } from '../middlewares/auth.js';
+import { isAdmin, requireSignIn } from '../middlewares/auth.js';
 
 // * ROUTE OBJECT
 /////////////////
@@ -22,6 +22,6 @@ router.use('/login', loginController);
 
 // * PROTECTED || METHOD : GET
 //////////////////////////////
-router.use('/protected', requireSignIn, protectedController);
+router.use('/protected', requireSignIn, isAdmin, protectedController);
 
 export default router;
