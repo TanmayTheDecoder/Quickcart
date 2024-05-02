@@ -1,5 +1,10 @@
 import { Fragment } from 'react';
+
+import Image from 'next/image';
+import logo from '@/assets/images/logo.png';
+
 import { Disclosure, Menu, Transition } from '@headlessui/react';
+
 import {
 	Bars3Icon,
 	ShoppingCartIcon,
@@ -43,10 +48,10 @@ const Navbar: React.FC<NavbarProps> = ({ children, heading }) => {
 								<div className='flex h-16 items-center justify-between'>
 									<div className='flex items-center'>
 										<div className='flex-shrink-0'>
-											<img
-												className='h-8 w-8'
-												src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
-												alt='Your Company'
+											<Image
+												src={logo}
+												alt='Logo'
+												width={150}
 											/>
 										</div>
 										<div className='hidden md:block'>
@@ -82,7 +87,7 @@ const Navbar: React.FC<NavbarProps> = ({ children, heading }) => {
 													aria-hidden='true'
 												/>
 											</button>
-											<span className='inline-flex items-center rounded-md bg-indigo-50 mb-7 -ml-1 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10'>
+											<span className='inline-flex items-center rounded-md bg-[#FFBF5E] mb-7 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20'>
 												1
 											</span>
 
@@ -200,7 +205,7 @@ const Navbar: React.FC<NavbarProps> = ({ children, heading }) => {
 												aria-hidden='true'
 											/>
 										</button>
-										<span className='inline-flex items-center rounded-md bg-indigo-50 mb-7 -ml-1 px-2 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10'>
+										<span className='inline-flex items-center rounded-md bg-[#FFBF5E] mb-7 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20'>
 											1
 										</span>
 									</div>
