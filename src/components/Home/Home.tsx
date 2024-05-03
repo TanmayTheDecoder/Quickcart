@@ -4,7 +4,7 @@ import ProductList from '../ProductList';
 
 const HomePage = () => {
 	return (
-		<Navbar heading='All Products'>
+		<Navbar heading='Products'>
 			<ProductList />
 		</Navbar>
 	);
