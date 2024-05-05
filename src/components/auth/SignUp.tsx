@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Logo from '@/assets/images/logo.png';
 import { useRouter } from 'next/navigation';
 import { ContainedButton } from '../common/Button';
+import Input from '../common/Input';
 
 const SignUp = () => {
 	const router = useRouter();
@@ -31,67 +32,36 @@ const SignUp = () => {
 					action='#'
 					method='POST'
 				>
-					<div>
-						<label
-							htmlFor='email'
-							className='block text-sm font-medium leading-6 text-gray-900'
-						>
-							Email address
-						</label>
-						<div className='mt-2'>
-							<input
-								id='email'
-								name='email'
-								type='email'
-								autoComplete='email'
-								required
-								className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#01997c] sm:text-sm sm:leading-6'
-							/>
-						</div>
-					</div>
-					<div>
-						<div className='flex items-center justify-between'>
-							<label
-								htmlFor='password'
-								className='block text-sm font-medium leading-6 text-gray-900'
-							>
-								Password
-							</label>
-						</div>
-						<div className='mt-2'>
-							<input
-								id='password'
-								name='password'
-								type='password'
-								autoComplete='current-password'
-								required
-								className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#01997c] sm:text-sm sm:leading-6'
-							/>
-						</div>
-					</div>
-					<div>
-						<label
-							htmlFor='email'
-							className='block text-sm font-medium leading-6 text-gray-900'
-						>
-							Confirm Password
-						</label>
-						<div className='mt-2'>
-							<input
-								id='confirmPassword'
-								name='confirmPassword'
-								type='confirmPassword'
-								autoComplete='confirmPassword'
-								required
-								className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#01997c] sm:text-sm sm:leading-6'
-							/>
-						</div>
-					</div>
-					<div>
-						<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
-							Sign Up
-						</ContainedButton>
-					</div>
+					<Input
+						name='email'
+						type='email'
+						label='Email Address'
+						required
+						className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+						placeholder='Enter Email Address'
+					/>
+
+					<Input
+						name='password'
+						type='password'
+						label='Email Password'
+						required
+						className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+						placeholder='Enter Password'
+					/>
+
+					<Input
+						name='confirmPassword'
+						type='password'
+						label='Email Confirm Password'
+						required
+						className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+						placeholder='Enter Confirm Password'
+					/>
+
+					<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
+						Sign Up
+					</ContainedButton>
 				</form>
 				<p className='mt-10 text-center text-sm text-gray-500'>
 					Already a member?{' '}
