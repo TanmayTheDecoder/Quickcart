@@ -1,7 +1,7 @@
 'use client';
-import React, { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import React, { useState } from 'react';
+import { ContainedButton } from '../common/Button';
+import { useRouter } from 'next/navigation';
 
 const products = [
 	{
@@ -32,7 +32,11 @@ const products = [
 ];
 
 const Cart = () => {
-	const [open, setOpen] = useState<boolean>(true);
+	const router = useRouter();
+
+	const backToShopping = () => {
+		router.push('/dashboard');
+	};
 
 	return (
 		<div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
@@ -74,12 +78,9 @@ const Cart = () => {
 										<p className='text-gray-500'>Qty {product.quantity}</p>
 
 										<div className='flex'>
-											<button
-												type='button'
-												className='flex w-full justify-center rounded-md bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'
-											>
+											<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
 												Remove
-											</button>
+											</ContainedButton>
 										</div>
 									</div>
 								</div>
@@ -98,12 +99,9 @@ const Cart = () => {
 					Shipping and taxes calculated at checkout.
 				</p>
 				<div className='mt-6'>
-					<a
-						href='#'
-						className='flex w-full justify-center rounded-md bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'
-					>
+					<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
 						Checkout
-					</a>
+					</ContainedButton>
 				</div>
 				<div className='mt-6 flex justify-center text-center text-sm text-gray-500'>
 					<p>
@@ -111,7 +109,7 @@ const Cart = () => {
 						<button
 							type='button'
 							className='cursor-pointer font-semibold leading-6 text-[#01997c] hover:text-[#78c0b3]'
-							onClick={() => setOpen(false)}
+							onClick={() => backToShopping()}
 						>
 							Continue Shopping
 							<span aria-hidden='true'> &rarr;</span>

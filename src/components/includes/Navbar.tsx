@@ -10,7 +10,7 @@ import {
 	ShoppingCartIcon,
 	XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { NavbarProps } from './types';
+import { NavbarProps } from '../types';
 
 const user = {
 	name: 'Tom Cook',

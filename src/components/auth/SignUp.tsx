@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Logo from '@/assets/images/logo.png';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { ContainedButton } from '../common/Button';
 
 const SignUp = () => {
 	const router = useRouter();
@@ -88,12 +88,9 @@ const SignUp = () => {
 						</div>
 					</div>
 					<div>
-						<button
-							type='submit'
-							className='flex w-full justify-center rounded-md bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'
-						>
+						<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
 							Sign Up
-						</button>
+						</ContainedButton>
 					</div>
 				</form>
 				<p className='mt-10 text-center text-sm text-gray-500'>
