@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { ContainedButton } from '../common/Button';
 import { useRouter } from 'next/navigation';
+import Dropdown from '../common/Dropdown';
+import { SelectChangeEvent } from '@mui/material';
 
 const products = [
 	{
@@ -10,7 +12,6 @@ const products = [
 		href: '#',
 		color: 'Salmon',
 		price: '$90.00',
-		quantity: 1,
 		imageSrc:
 			'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
 		imageAlt:
@@ -22,13 +23,26 @@ const products = [
 		href: '#',
 		color: 'Blue',
 		price: '$32.00',
-		quantity: 1,
 		imageSrc:
 			'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
 		imageAlt:
 			'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
 	},
-	// More products...
+];
+
+const dropDownData = [
+	{
+		value: 1,
+		label: '1',
+	},
+	{
+		value: 2,
+		label: '2',
+	},
+	{
+		value: 3,
+		label: '3',
+	},
 ];
 
 const Cart = () => {
@@ -36,6 +50,12 @@ const Cart = () => {
 
 	const backToShopping = () => {
 		router.push('/dashboard');
+	};
+
+	const [selectedValue, setSelectedValue] = useState<number>(1);
+
+	const handleChange = (e: SelectChangeEvent) => {
+		setSelectedValue(e.target.value as any);
 	};
 
 	return (
@@ -75,8 +95,16 @@ const Cart = () => {
 										</p>
 									</div>
 									<div className='flex flex-1 items-end justify-between text-sm'>
-										<p className='text-gray-500'>Qty {product.quantity}</p>
-
+										<div className='flex gap-2 items-center'>
+											<label className='m-0'>Qty.</label>
+											<Dropdown
+												key={product.id}
+												value={selectedValue}
+												onChange={handleChange}
+												options={dropDownData}
+												variant='standard'
+											/>
+										</div>
 										<div className='flex'>
 											<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
 												Remove

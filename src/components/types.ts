@@ -1,3 +1,5 @@
+import { SelectChangeEvent } from '@mui/material';
+
 export type NavbarProps = {
 	children?: React.ReactNode;
 	heading?: string;
@@ -18,4 +20,12 @@ export type InputProps = {
 	className?: string;
 	type?: any;
 	required?: boolean;
+};
+
+export type DropDownProps = {
+	value?: any;
+	label?: string;
+	onChange?: (e: SelectChangeEvent) => void;
+	options?: { value: any; label: string }[];
+	variant?: string;
 };
