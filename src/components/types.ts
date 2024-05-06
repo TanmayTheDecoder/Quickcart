@@ -29,3 +29,7 @@ export type DropDownProps = {
 	options?: { value: any; label: string }[];
 	variant?: string;
 };
+
+export type RadioProps = {
+	options?: { value?: any; label?: string; ariaLabel?: string }[];
+};
