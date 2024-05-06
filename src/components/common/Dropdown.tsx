@@ -17,6 +17,25 @@ const Dropdown: React.FC<DropDownProps> = ({
 				value={value}
 				label={label}
 				onChange={onChange}
+				sx={{
+					fontSize: '0.75rem',
+					m: 0,
+					p: 0,
+					height: 32,
+					'.MuiSelect-select': {
+						minHeight: '32px',
+						p: 0,
+					},
+					'.MuiOutlinedInput-input': {
+						p: '8px 14px',
+					},
+					'.MuiSelect-icon': {
+						top: 'calc(50% - 12px)',
+					},
+					'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+						borderColor: '#01997c',
+					},
+				}}
 			>
 				{options?.map((option, index) => (
 					<MenuItem

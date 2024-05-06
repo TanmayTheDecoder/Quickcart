@@ -4,6 +4,7 @@ import { ContainedButton } from '../common/Button';
 import { useRouter } from 'next/navigation';
 import Dropdown from '../common/Dropdown';
 import { SelectChangeEvent } from '@mui/material';
+import Link from 'next/link';
 
 const products = [
 	{
@@ -102,7 +103,7 @@ const Cart = () => {
 												value={selectedValue}
 												onChange={handleChange}
 												options={dropDownData}
-												variant='standard'
+												variant='outlined'
 											/>
 										</div>
 										<div className='flex'>
@@ -127,9 +128,11 @@ const Cart = () => {
 					Shipping and taxes calculated at checkout.
 				</p>
 				<div className='mt-6'>
-					<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
-						Checkout
-					</ContainedButton>
+					<Link href='/checkout'>
+						<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
+							Checkout
+						</ContainedButton>
+					</Link>
 				</div>
 				<div className='mt-6 flex justify-center text-center text-sm text-gray-500'>
 					<p>
