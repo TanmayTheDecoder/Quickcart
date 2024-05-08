@@ -35,7 +35,16 @@ export const RadioButton: React.FC<RadioProps> = ({
 }) => {
 	return (
 		<FormControl>
-			<FormLabel id={`${name}-label`}>{label}</FormLabel>
+			<FormLabel
+				id={`${name}-label`}
+				sx={{
+					'&.Mui-focused': {
+						color: '#01997c',
+					},
+				}}
+			>
+				{label}
+			</FormLabel>
 			<RadioGroup
 				row={row}
 				aria-labelledby={`${name}-label`}

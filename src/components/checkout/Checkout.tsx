@@ -27,7 +27,10 @@ const Checkout: React.FC = () => {
 		expiryDate: '',
 		cvc: '',
 	});
-	const [selectedValue, setSelectedValue] = useState<number>(1);
+	const [selectedValue, setSelectedValue] = useState({
+		qty: 1,
+		country: 'Australia',
+	});
 
 	const products = [
 		{
@@ -69,6 +72,29 @@ const Checkout: React.FC = () => {
 		},
 	];
 
+	const countryData = [
+		{
+			value: 'India',
+			label: 'India',
+		},
+		{
+			value: 'Canada',
+			label: 'Canada',
+		},
+		{
+			value: 'Australia',
+			label: 'Australia',
+		},
+		{
+			value: 'Europe',
+			label: 'Europe',
+		},
+		{
+			value: 'United States',
+			label: 'United States',
+		},
+	];
+
 	const handleChange = (e) => {
 		setSelectedValue(e.target.value as any);
 	};
@@ -95,56 +121,56 @@ const Checkout: React.FC = () => {
 		<div className='container mx-auto flex flex-col lg:flex-row gap-5 mt-5'>
 			<div className='container mx-auto'>
 				<form
-					className='mx-auto bg-white p-5'
+					className='mx-auto bg-white p-5 flex flex-col gap-2.5'
 					onSubmit={handleSubmit}
 				>
-					<div className='mb-4'>
-						<Input
-							name='email'
-							type='email'
-							label='Email Address'
-							required
-							className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
-							placeholder='Enter Email Address'
-							onChange={handleFieldChange}
-						/>
-					</div>
-
 					{/* Similar blocks for other fields */}
 
 					<div className='grid grid-cols-2 gap-4'>
 						<div>
-							<label
-								htmlFor='firstName'
-								className='block text-gray-700 text-sm font-bold mb-2'
-							>
-								First name
-							</label>
-							<input
-								type='text'
-								id='firstName'
+							<Input
 								name='firstName'
+								type='text'
+								label='First Name'
+								required
 								value={formData.firstName}
-								onChange={handleChange}
-								className='w-full p-2 border rounded'
+								className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+								placeholder='First Name'
+								onChange={handleFieldChange}
 							/>
 						</div>
 						<div>
-							<label
-								htmlFor='lastName'
-								className='block text-gray-700 text-sm font-bold mb-2'
-							>
-								Last name
-							</label>
-							<input
-								type='text'
-								id='lastName'
+							<Input
 								name='lastName'
+								type='text'
+								label='Last Name'
+								required
 								value={formData.lastName}
-								onChange={handleChange}
-								className='w-full p-2 border rounded'
+								className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+								placeholder='Last Name'
+								onChange={handleFieldChange}
 							/>
 						</div>
+					</div>
+
+					<Input
+						name='email'
+						type='email'
+						label='Email Address'
+						required
+						value={formData.email}
+						className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+						placeholder='Enter Email Address'
+						onChange={handleFieldChange}
+					/>
+
+					<div className='flex flex-col gap-3'>
+						<Dropdown
+							value={selectedValue.country}
+							onChange={handleChange}
+							options={countryData}
+							variant='outlined'
+						/>
 					</div>
 
 					{/* Continue with similar structured input fields for the rest of the form */}
@@ -207,7 +233,7 @@ const Checkout: React.FC = () => {
 												<label className='m-0'>Qty.</label>
 												<Dropdown
 													key={product.id}
-													value={selectedValue}
+													value={selectedValue.qty}
 													onChange={handleChange}
 													options={dropDownData}
 													variant='outlined'
