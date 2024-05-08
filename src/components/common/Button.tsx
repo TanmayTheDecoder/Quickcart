@@ -1,7 +1,14 @@
 'use client';
 import React from 'react';
-import { Button } from '@mui/material';
-import { ButtonProps } from '../types';
+import {
+	Button,
+	Radio,
+	RadioGroup,
+	FormControlLabel,
+	FormControl,
+	FormLabel,
+} from '@mui/material';
+import { ButtonProps, RadioProps } from '../types';
 
 export const ContainedButton: React.FC<ButtonProps> = ({
 	className,
@@ -19,31 +26,40 @@ export const ContainedButton: React.FC<ButtonProps> = ({
 	);
 };
 
-import { useState } from 'react';
-import Radio from '@mui/material/Radio';
-import { RadioProps } from '../types';
-
-export const RadioButton: React.FC<RadioProps> = ({ options }) => {
-	const [selectedValue, setSelectedValue] = useState(options[0].value);
-
-	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSelectedValue(event.target.value);
-	};
-
+export const RadioButton: React.FC<RadioProps> = ({
+	label,
+	name,
+	options,
+	defaultValue,
+	row,
+}) => {
 	return (
-		<div>
-			{options.map((option) => (
-				<div key={option.value}>
-					<Radio
-						checked={selectedValue === option.value}
-						onChange={handleChange}
+		<FormControl>
+			<FormLabel id={`${name}-label`}>{label}</FormLabel>
+			<RadioGroup
+				row={row}
+				aria-labelledby={`${name}-label`}
+				name={name}
+				defaultValue={defaultValue}
+			>
+				{options?.map((option) => (
+					<FormControlLabel
+						key={option.value}
 						value={option.value}
-						name='radio-buttons'
-						inputProps={{ 'aria-label': option.ariaLabel }}
+						control={
+							<Radio
+								sx={{
+									'&.Mui-checked': {
+										color: '#01997c',
+									},
+								}}
+							/>
+						}
+						label={option.label}
+						disabled={option.disabled}
 					/>
-					{option.label}
-				</div>
-			))}
-		</div>
+				))}
+			</RadioGroup>
+		</FormControl>
 	);
 };

@@ -31,5 +31,9 @@ export type DropDownProps = {
 };
 
 export type RadioProps = {
-	options?: { value?: any; label?: string; ariaLabel?: string }[];
+	label?: string;
+	name?: string;
+	options?: { value: string; label: string; disabled?: boolean }[];
+	defaultValue?: any;
+	row?: boolean;
 };

@@ -11,6 +11,7 @@ import {
 	XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { NavbarProps } from '../types';
+import { useRouter } from 'next/navigation';
 
 const user = {
 	name: 'Tom Cook',
@@ -35,6 +36,12 @@ const classNames = (...classes: (string | boolean)[]) => {
 };
 
 const Navbar: React.FC<NavbarProps> = ({ children, heading }) => {
+	const router = useRouter();
+
+	const goToCart = () => {
+		router.push('/cart');
+	};
+
 	return (
 		<>
 			<div className='min-h-full'>
@@ -79,6 +86,9 @@ const Navbar: React.FC<NavbarProps> = ({ children, heading }) => {
 											<button
 												type='button'
 												className='relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
+												onClick={() => {
+													goToCart();
+												}}
 											>
 												<span className='absolute -inset-1.5' />
 												<span className='sr-only'>View notifications</span>
@@ -197,6 +207,9 @@ const Navbar: React.FC<NavbarProps> = ({ children, heading }) => {
 										<button
 											type='button'
 											className='relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
+											onClick={() => {
+												goToCart();
+											}}
 										>
 											<span className='absolute -inset-1.5' />
 											<span className='sr-only'>View notifications</span>

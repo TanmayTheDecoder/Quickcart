@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 import Dropdown from '../common/Dropdown';
-import { ContainedButton } from '../common/Button';
+import { ContainedButton, RadioButton } from '../common/Button';
+import Input from '../common/Input';
+import { useRouter } from 'next/navigation';
 
 const Checkout: React.FC = () => {
+	const router = useRouter();
 	const [formData, setFormData] = useState({
 		email: '',
 		firstName: '',
@@ -66,13 +69,6 @@ const Checkout: React.FC = () => {
 		},
 	];
 
-	const handleFormChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
-	) => {
-		const { name, value } = e.target;
-		setFormData((prev) => ({ ...prev, [name]: value }));
-	};
-
 	const handleChange = (e) => {
 		setSelectedValue(e.target.value as any);
 	};
@@ -82,115 +78,97 @@ const Checkout: React.FC = () => {
 		console.log('Form data submitted:', formData);
 	};
 
+	const RadioOptions = [
+		{ label: 'Credit', value: 'credit' },
+		{ label: 'Cash', value: 'cash' },
+	];
+
+	const handleFieldChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const backToShopping = () => {
+		router.push('/dashboard');
+	};
+
 	return (
-		<div className='px-4 flex gap-5 mt-5'>
-			<form
-				className='mx-auto bg-white p-5 shadow-md rounded-md'
-				onSubmit={handleSubmit}
-			>
-				<div className='mb-4'>
-					<label
-						htmlFor='email'
-						className='block text-gray-700 text-sm font-bold mb-2'
-					>
-						Email address
-					</label>
-					<input
-						type='email'
-						id='email'
-						name='email'
-						value={formData.email}
-						onChange={handleFormChange}
-						className='w-full p-2 border rounded'
-					/>
-				</div>
-
-				{/* Similar blocks for other fields */}
-
-				<div className='grid grid-cols-2 gap-4'>
-					<div>
-						<label
-							htmlFor='firstName'
-							className='block text-gray-700 text-sm font-bold mb-2'
-						>
-							First name
-						</label>
-						<input
-							type='text'
-							id='firstName'
-							name='firstName'
-							value={formData.firstName}
-							onChange={handleChange}
-							className='w-full p-2 border rounded'
-						/>
-					</div>
-					<div>
-						<label
-							htmlFor='lastName'
-							className='block text-gray-700 text-sm font-bold mb-2'
-						>
-							Last name
-						</label>
-						<input
-							type='text'
-							id='lastName'
-							name='lastName'
-							value={formData.lastName}
-							onChange={handleChange}
-							className='w-full p-2 border rounded'
-						/>
-					</div>
-				</div>
-
-				{/* Continue with similar structured input fields for the rest of the form */}
-
-				<div className='mb-4'>
-					<label
-						htmlFor='paymentMethod'
-						className='block text-gray-700 text-sm font-bold mb-2'
-					>
-						Payment method
-					</label>
-					<div className='flex items-center'>
-						<input
-							type='radio'
-							id='standard'
-							name='paymentMethod'
-							value='credit'
-							checked={formData.paymentMethod === 'credit'}
-							onChange={handleChange}
-							className='mr-2'
-						/>
-						<label
-							htmlFor='standard'
-							className='mr-4'
-						>
-							Credit Card
-						</label>
-						<input
-							type='radio'
-							id='express'
-							name='paymentMethod'
-							value='cash'
-							checked={formData.paymentMethod === 'cash'}
-							onChange={handleChange}
-							className='mr-2'
-						/>
-						<label htmlFor='express'>Cash On Delivery</label>
-					</div>
-				</div>
-
-				{/* Similar for payment method and credit card details */}
-
-				<button
-					type='submit'
-					className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+		<div className='container mx-auto flex flex-col lg:flex-row gap-5 mt-5'>
+			<div className='container mx-auto'>
+				<form
+					className='mx-auto bg-white p-5'
+					onSubmit={handleSubmit}
 				>
-					Submit
-				</button>
-			</form>
-			<div className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-				<div className='border-t border-gray-200 px-4 py-6 sm:px-6'>
+					<div className='mb-4'>
+						<Input
+							name='email'
+							type='email'
+							label='Email Address'
+							required
+							className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+							placeholder='Enter Email Address'
+							onChange={handleFieldChange}
+						/>
+					</div>
+
+					{/* Similar blocks for other fields */}
+
+					<div className='grid grid-cols-2 gap-4'>
+						<div>
+							<label
+								htmlFor='firstName'
+								className='block text-gray-700 text-sm font-bold mb-2'
+							>
+								First name
+							</label>
+							<input
+								type='text'
+								id='firstName'
+								name='firstName'
+								value={formData.firstName}
+								onChange={handleChange}
+								className='w-full p-2 border rounded'
+							/>
+						</div>
+						<div>
+							<label
+								htmlFor='lastName'
+								className='block text-gray-700 text-sm font-bold mb-2'
+							>
+								Last name
+							</label>
+							<input
+								type='text'
+								id='lastName'
+								name='lastName'
+								value={formData.lastName}
+								onChange={handleChange}
+								className='w-full p-2 border rounded'
+							/>
+						</div>
+					</div>
+
+					{/* Continue with similar structured input fields for the rest of the form */}
+
+					<div className='py-2.5'>
+						<RadioButton
+							label='Payment Method'
+							name='paymentMethod'
+							options={RadioOptions}
+							defaultValue='credit'
+							row={true}
+						/>
+					</div>
+
+					{/* Similar for payment method and credit card details */}
+
+					<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
+						Submit
+					</ContainedButton>
+				</form>
+			</div>
+
+			<div className='container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+				<div className='px-4 py-6 sm:px-6'>
 					<h1 className='text-4xl my-6 font-bold tracking-tight text-gray-900'>
 						Cart
 					</h1>
