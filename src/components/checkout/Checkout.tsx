@@ -27,11 +27,8 @@ const Checkout: React.FC = () => {
 		expiryDate: '',
 		cvc: '',
 	});
-	const [selectedValue, setSelectedValue] = useState({
-		qty: 1,
-		country: 'Australia',
-	});
-
+	const [selectedValue, setSelectedValue] = useState<number>(1);
+	const [countryValue, setCountryValue] = useState<string>('Australia');
 	const products = [
 		{
 			id: 1,
@@ -95,8 +92,14 @@ const Checkout: React.FC = () => {
 		},
 	];
 
-	const handleChange = (e) => {
-		setSelectedValue(e.target.value as any);
+	const handleChange = (e, dropDownType) => {
+		if (dropDownType === 'qty') {
+			setSelectedValue(e.target.value as any);
+		}
+
+		if (dropDownType === 'country') {
+			setCountryValue(e.target.value as string);
+		}
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -166,8 +169,8 @@ const Checkout: React.FC = () => {
 
 					<div className='flex flex-col gap-3'>
 						<Dropdown
-							value={selectedValue.country}
-							onChange={handleChange}
+							value={countryValue}
+							onChange={(e) => handleChange(e, 'country')}
 							options={countryData}
 							variant='outlined'
 						/>
@@ -233,8 +236,8 @@ const Checkout: React.FC = () => {
 												<label className='m-0'>Qty.</label>
 												<Dropdown
 													key={product.id}
-													value={selectedValue.qty}
-													onChange={handleChange}
+													value={selectedValue}
+													onChange={(e) => handleChange(e, 'qty')}
 													options={dropDownData}
 													variant='outlined'
 												/>

@@ -25,7 +25,7 @@ export type InputProps = {
 export type DropDownProps = {
 	value?: any;
 	label?: string;
-	onChange?: (e: SelectChangeEvent) => void;
+	onChange?: (e: SelectChangeEvent, { ...rest }) => void;
 	options?: { value: any; label: string }[];
 	variant?: string;
 };
