@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 
 const Checkout: React.FC = () => {
 	const router = useRouter();
-	const [formData, setFormData] = useState({
+	const [formData, setFormData] = useState<any>({
 		email: '',
 		firstName: '',
 		lastName: '',
@@ -19,7 +19,7 @@ const Checkout: React.FC = () => {
 		city: '',
 		country: 'United States',
 		state: '',
-		postalCode: '',
+		zip: '',
 		phone: '',
 		paymentMethod: 'credit',
 		cardNumber: '',
@@ -27,8 +27,12 @@ const Checkout: React.FC = () => {
 		expiryDate: '',
 		cvc: '',
 	});
-	const [selectedValue, setSelectedValue] = useState<number>(1);
-	const [countryValue, setCountryValue] = useState<string>('Australia');
+
+	const [selectedValue, setSelectedValue] = useState({
+		quantity: '1',
+		country: 'Australia',
+	});
+
 	const products = [
 		{
 			id: 1,
@@ -56,15 +60,15 @@ const Checkout: React.FC = () => {
 
 	const dropDownData = [
 		{
-			value: 1,
+			value: '1',
 			label: '1',
 		},
 		{
-			value: 2,
+			value: '2',
 			label: '2',
 		},
 		{
-			value: 3,
+			value: '3',
 			label: '3',
 		},
 	];
@@ -92,14 +96,12 @@ const Checkout: React.FC = () => {
 		},
 	];
 
-	const handleChange = (e, dropDownType) => {
-		if (dropDownType === 'qty') {
-			setSelectedValue(e.target.value as any);
-		}
-
-		if (dropDownType === 'country') {
-			setCountryValue(e.target.value as string);
-		}
+	const handleChange = (e, type) => {
+		const { value } = e.target;
+		setSelectedValue((prev) => ({
+			...prev,
+			[type]: value,
+		}));
 	};
 
 	const handleSubmit = (e: React.FormEvent) => {
@@ -113,7 +115,8 @@ const Checkout: React.FC = () => {
 	];
 
 	const handleFieldChange = (e) => {
-		setFormData({ ...formData, [e.target.name]: e.target.value });
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
 	};
 
 	const backToShopping = () => {
@@ -169,12 +172,56 @@ const Checkout: React.FC = () => {
 
 					<div className='flex flex-col gap-3'>
 						<Dropdown
-							value={countryValue}
+							value={selectedValue.country}
 							onChange={(e) => handleChange(e, 'country')}
 							options={countryData}
 							variant='outlined'
 						/>
 					</div>
+
+					<Input
+						name='address'
+						type='text'
+						label='Street Address'
+						required
+						value={formData.address}
+						className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+						placeholder='Enter Address'
+						onChange={handleFieldChange}
+					/>
+
+					<Input
+						name='city'
+						type='text'
+						label='City'
+						required
+						value={formData.city}
+						className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+						placeholder='Enter City Name'
+						onChange={handleFieldChange}
+					/>
+
+					<Input
+						name='state'
+						type='text'
+						label='State/Province'
+						required
+						value={formData.state}
+						className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+						placeholder='Enter State/Province Name'
+						onChange={handleFieldChange}
+					/>
+
+					<Input
+						name='zip'
+						type='text'
+						label='ZIP'
+						required
+						value={formData.zip}
+						className='w-full rounded-md py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 sm:text-sm sm:leading-6 focus:ring-0 focus:ring-offset-0'
+						placeholder='Enter ZIP Code'
+						onChange={handleFieldChange}
+					/>
 
 					{/* Continue with similar structured input fields for the rest of the form */}
 
@@ -236,8 +283,8 @@ const Checkout: React.FC = () => {
 												<label className='m-0'>Qty.</label>
 												<Dropdown
 													key={product.id}
-													value={selectedValue}
-													onChange={(e) => handleChange(e, 'qty')}
+													value={selectedValue.quantity}
+													onChange={(e) => handleChange(e, 'quantity')}
 													options={dropDownData}
 													variant='outlined'
 												/>
