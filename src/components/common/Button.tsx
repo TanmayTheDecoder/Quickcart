@@ -11,14 +11,34 @@ import {
 import { ButtonProps, RadioProps } from '../types';
 
 export const ContainedButton: React.FC<ButtonProps> = ({
+	type,
 	className,
 	children,
 	onClick,
 }) => {
 	return (
 		<Button
+			type={type}
 			className={`${className}`}
 			variant='contained'
+			onClick={onClick}
+		>
+			{children}
+		</Button>
+	);
+};
+
+export const OutlinedButton: React.FC<ButtonProps> = ({
+	type,
+	className,
+	children,
+	onClick,
+}) => {
+	return (
+		<Button
+			type={type}
+			className={`${className}`}
+			variant='outlined'
 			onClick={onClick}
 		>
 			{children}

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 
 import Dropdown from '../common/Dropdown';
-import { ContainedButton, RadioButton } from '../common/Button';
+import { ContainedButton, OutlinedButton, RadioButton } from '../common/Button';
 import Input from '../common/Input';
 import { useRouter } from 'next/navigation';
 
@@ -130,7 +130,7 @@ const Checkout: React.FC = () => {
 					className='mx-auto bg-white p-5 flex flex-col gap-2.5'
 					onSubmit={handleSubmit}
 				>
-					{/* Similar blocks for other fields */}
+
 
 					<div className='grid grid-cols-2 gap-4'>
 						<div>
@@ -223,7 +223,14 @@ const Checkout: React.FC = () => {
 						onChange={handleFieldChange}
 					/>
 
-					{/* Continue with similar structured input fields for the rest of the form */}
+					<div className="flex justify-end items-center gap-5">
+						<OutlinedButton className='flex justify-center rounded-md !border-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-[#01997c] shadow-sm hover:!border-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]' type='reset' >
+							Reset
+						</OutlinedButton>
+						<ContainedButton className='flex justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
+							Add Address
+						</ContainedButton>
+					</div>
 
 					<div className='py-2.5'>
 						<RadioButton
@@ -235,11 +242,9 @@ const Checkout: React.FC = () => {
 						/>
 					</div>
 
-					{/* Similar for payment method and credit card details */}
 
-					<ContainedButton className='flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
-						Submit
-					</ContainedButton>
+
+
 				</form>
 			</div>
 

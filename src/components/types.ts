@@ -6,6 +6,7 @@ export type NavbarProps = {
 };
 
 export type ButtonProps = {
+	type?: string;
 	className?: string;
 	children?: React.ReactNode;
 	onClick?: () => void;
