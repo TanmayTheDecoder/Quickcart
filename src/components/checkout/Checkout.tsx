@@ -242,9 +242,6 @@ const Checkout: React.FC = () => {
 						/>
 					</div>
 
-
-
-
 				</form>
 			</div>
 
