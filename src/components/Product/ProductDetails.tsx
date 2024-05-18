@@ -1,27 +1,7 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        gridTemplateRows: {
-          '[auto,auto,1fr]': 'auto auto 1fr',
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 import { useState } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { RadioGroup } from '@headlessui/react'
+import { ContainedButton } from '../common/Button'
 
 const product = {
     name: 'Basic Tee 6-Pack',
@@ -80,7 +60,6 @@ const reviews = { href: '#', average: 4, totalCount: 117 }
 const classNames = (...classes: (string | boolean)[]) => {
     return classes.filter(Boolean).join(' ');
 };
-
 
 const ProductDetails = () => {
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
@@ -172,7 +151,7 @@ const ProductDetails = () => {
                                         <StarIcon
                                             key={rating}
                                             className={classNames(
-                                                reviews.average > rating ? 'text-gray-900' : 'text-gray-200',
+                                                reviews.average > rating ? 'text-[#ffbf5e]' : 'text-gray-200',
                                                 'h-5 w-5 flex-shrink-0'
                                             )}
                                             aria-hidden="true"
@@ -180,7 +159,7 @@ const ProductDetails = () => {
                                     ))}
                                 </div>
                                 <p className="sr-only">{reviews.average} out of 5 stars</p>
-                                <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                                <a href={reviews.href} className="ml-3 text-sm font-medium text-[#42a392] hover:text-[#78c0b3]">
                                     {reviews.totalCount} reviews
                                 </a>
                             </div>
@@ -227,7 +206,7 @@ const ProductDetails = () => {
                             <div className="mt-10">
                                 <div className="flex items-center justify-between">
                                     <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                                    <a href="#" className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+                                    <a href="#" className="text-sm font-medium text-[#42a392] hover:text-[#78c0b3]">
                                         Size guide
                                     </a>
                                 </div>
@@ -245,7 +224,7 @@ const ProductDetails = () => {
                                                         size.inStock
                                                             ? 'cursor-pointer bg-white text-gray-900 shadow-sm'
                                                             : 'cursor-not-allowed bg-gray-50 text-gray-200',
-                                                        active ? 'ring-2 ring-indigo-500' : '',
+                                                        active ? 'ring-2 ring-[#42a392]' : '',
                                                         'group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6'
                                                     )
                                                 }
@@ -257,7 +236,7 @@ const ProductDetails = () => {
                                                             <span
                                                                 className={classNames(
                                                                     active ? 'border' : 'border-2',
-                                                                    checked ? 'border-indigo-500' : 'border-transparent',
+                                                                    checked ? 'border-[#42a392]' : 'border-transparent',
                                                                     'pointer-events-none absolute -inset-px rounded-md'
                                                                 )}
                                                                 aria-hidden="true"
@@ -285,12 +264,9 @@ const ProductDetails = () => {
                                 </RadioGroup>
                             </div>
 
-                            <button
-                                type="submit"
-                                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                            >
-                                Add to bag
-                            </button>
+                            <ContainedButton className='mt-5 flex w-full justify-center rounded-md !bg-[#01997c] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:!bg-[#44a393] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:[#01997c]'>
+                                Add To Bag
+                            </ContainedButton>
                         </form>
                     </div>
 
