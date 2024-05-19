@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import logo from '@/assets/images/logo.png';
 
@@ -55,11 +56,13 @@ const Navbar: React.FC<NavbarProps> = ({ children, heading }) => {
 								<div className='flex h-16 items-center justify-between'>
 									<div className='flex items-center'>
 										<div className='flex-shrink-0'>
-											<Image
-												src={logo}
-												alt='Logo'
-												width={150}
-											/>
+											<Link href='/dashboard'>
+												<Image
+													src={logo}
+													alt='Logo'
+													width={150}
+												/>
+											</Link>
 										</div>
 										<div className='hidden md:block'>
 											<div className='ml-10 flex items-baseline space-x-4'>

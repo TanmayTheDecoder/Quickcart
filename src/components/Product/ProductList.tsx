@@ -942,9 +942,9 @@ const ProductList = () => {
 													<Link href='/product-details'>
 														<div
 															key={product.id}
-															className='group relative'
+															className='group relative shadow-md p-2'
 														>
-															<div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80'>
+															<div className='min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60'>
 																<img
 																	src={product.thumbnail}
 																	alt={product.title}
@@ -971,7 +971,7 @@ const ProductList = () => {
 																	<p className='text-sm font-medium text-gray-900'>
 																		$ {product.price}
 																	</p>
-																	<p className='text-sm font-medium text-gray-900'>
+																	<p className='text-sm font-medium text-gray-900 line-through'>
 																		$ {Math.round(product.price * (1 - product.discountPercentage / 100))}
 																	</p>
 																</div>
