@@ -14,6 +14,8 @@ import {
 	Squares2X2Icon,
 	StarIcon,
 } from '@heroicons/react/20/solid';
+import { rootReducer } from '@/redux/rootReducer';
+import { useSelector } from 'react-redux';
 
 const sortOptions = [
 	{ name: 'Most Popular', href: '#', current: true },

@@ -6,9 +6,18 @@ export const getProducts = createAsyncThunk(
 	async (_, { rejectWithValue }) => {
 		try {
 			const response = await axios.get('http://localhost:8080/products');
-			return response.data;
+			if (response.status === 200) {
+				return response.data;
+			} else {
+				return rejectWithValue('Products not found');
+			}
 		} catch (err) {
-			return rejectWithValue(err);
+			if (axios.isAxiosError(err)) {
+				return rejectWithValue(
+					err.response?.data?.message || 'An unexpected error occurred',
+				);
+			}
+			return rejectWithValue('An unexpected error occurred');
 		}
 	},
 );
