@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Fragment } from 'react';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -15,7 +15,9 @@ import {
 	StarIcon,
 } from '@heroicons/react/20/solid';
 import { rootReducer } from '@/redux/rootReducer';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { store } from '@/redux/store';
+import { getProducts } from '@/redux/thunks/products/getProducts';
 
 const sortOptions = [
 	{ name: 'Most Popular', href: '#', current: true },
@@ -656,8 +658,15 @@ const classNames = (...classes: (string | boolean)[]) => {
 };
 
 const ProductList = () => {
+	const dispatch = useDispatch()
+	const products = useSelector((state: any) => state.getProducts.products)
 	const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
+	useEffect(() => {
+		getProducts()
+	}, [])
+
+	console.log('console_products', products)
 	return (
 		<div>
 			<div className='bg-white'>
