@@ -30,80 +30,81 @@ const sortOptions = [
 
 const filters = [
 	{
-		id: 'brands',
-		name: 'Brands',
-		options: [
-			{ value: 'Apple', label: 'Apple', checked: false },
-			{ value: 'Samsung', label: 'Samsung', checked: false },
-			{ value: 'OPPO', label: 'OPPO', checked: false },
-			{ value: 'Huawei', label: 'Huawei', checked: false },
-			{
-				value: 'Microsoft Surface',
-				label: 'Microsoft Surface',
-				checked: false
-			},
-			{ value: 'Infinix', label: 'Infinix', checked: false },
-			{ value: 'HP Pavilion', label: 'HP Pavilion', checked: false },
-			{
-				value: 'Impression of Acqua Di Gio',
-				label: 'Impression of Acqua Di Gio',
-				checked: false
-			},
-			{ value: 'Royal_Mirage', label: 'Royal_Mirage', checked: false },
-			{
-				value: 'Fog Scent Xpressio',
-				label: 'Fog Scent Xpressio',
-				checked: false
-			},
-			{ value: 'Al Munakh', label: 'Al Munakh', checked: false },
-			{
-				value: 'Lord - Al-Rehab',
-				label: 'Lord   Al Rehab',
-				checked: false
-			},
-			{ value: 'L\'Oreal Paris', label: 'L\'Oreal Paris', checked: false },
-			{ value: 'Hemani Tea', label: 'Hemani Tea', checked: false },
-			{ value: 'Dermive', label: 'Dermive', checked: false },
-			{
-				value: 'ROREC White Rice',
-				label: 'ROREC White Rice',
-				checked: false
-			},
-			{ value: 'Fair & Clear', label: 'Fair & Clear', checked: false },
-			{ value: 'Saaf & Khaas', label: 'Saaf & Khaas', checked: false },
-			{
-				value: 'Bake Parlor Big',
-				label: 'Bake Parlor Big',
-				checked: false
-			},
-			{
-				value: 'Baking Food Items',
-				label: 'Baking Food Items',
-				checked: false
-			},
-			{ value: 'fauji', label: 'fauji', checked: false },
-			{ value: 'Dry Rose', label: 'Dry Rose', checked: false },
-			{ value: 'Boho Decor', label: 'Boho Decor', checked: false },
-			{ value: 'Flying Wooden', label: 'Flying Wooden', checked: false },
-			{ value: 'LED Lights', label: 'LED Lights', checked: false },
-			{ value: 'luxury palace', label: 'luxury palace', checked: false },
-			{ value: 'Golden', label: 'Golden', checked: false }
-		]
-	},
-	{
 		id: 'category',
 		name: 'Category',
 		options: [
-			{ value: 'smartphones', label: 'smartphones', checked: false },
-			{ value: 'laptops', label: 'laptops', checked: false },
+			{ value: 'beauty', label: 'beauty', checked: false },
 			{ value: 'fragrances', label: 'fragrances', checked: false },
-			{ value: 'skincare', label: 'skincare', checked: false },
+			{ value: 'furniture', label: 'furniture', checked: false },
 			{ value: 'groceries', label: 'groceries', checked: false },
 			{
 				value: 'home-decoration',
 				label: 'home decoration',
 				checked: false
+			},
+			{
+				value: 'kitchen-accessories',
+				label: 'kitchen accessories',
+				checked: false
+			},
+			{ value: 'laptops', label: 'laptops', checked: false },
+			{ value: 'mens-shirts', label: 'mens shirts', checked: false },
+			{ value: 'mens-shoes', label: 'mens shoes', checked: false },
+			{ value: 'mens-watches', label: 'mens watches', checked: false },
+			{
+				value: 'mobile-accessories',
+				label: 'mobile accessories',
+				checked: false
 			}
+		]
+	},
+	{
+		id: 'brands',
+		name: 'Brands',
+		options: [
+			{ value: 'Essence', label: 'Essence', checked: false },
+			{ value: 'Glamour Beauty', label: 'Glamour Beauty', checked: false },
+			{ value: 'Velvet Touch', label: 'Velvet Touch', checked: false },
+			{ value: 'Chic Cosmetics', label: 'Chic Cosmetics', checked: false },
+			{ value: 'Nail Couture', label: 'Nail Couture', checked: false },
+			{ value: 'Calvin Klein', label: 'Calvin Klein', checked: false },
+			{ value: 'Chanel', label: 'Chanel', checked: false },
+			{ value: 'Dior', label: 'Dior', checked: false },
+			{
+				value: 'Dolce & Gabbana',
+				label: 'Dolce & Gabbana',
+				checked: false
+			},
+			{ value: 'Gucci', label: 'Gucci', checked: false },
+			{
+				value: 'Annibale Colombo',
+				label: 'Annibale Colombo',
+				checked: false
+			},
+			{ value: 'Furniture Co.', label: 'Furniture Co.', checked: false },
+			{ value: 'Knoll', label: 'Knoll', checked: false },
+			{ value: 'Bath Trends', label: 'Bath Trends', checked: false },
+			{ value: 'Apple', label: 'Apple', checked: false },
+			{ value: 'Asus', label: 'Asus', checked: false },
+			{ value: 'Huawei', label: 'Huawei', checked: false },
+			{ value: 'Lenovo', label: 'Lenovo', checked: false },
+			{ value: 'Dell', label: 'Dell', checked: false },
+			{ value: 'Fashion Trends', label: 'Fashion Trends', checked: false },
+			{ value: 'Gigabyte', label: 'Gigabyte', checked: false },
+			{ value: 'Classic Wear', label: 'Classic Wear', checked: false },
+			{ value: 'Casual Comfort', label: 'Casual Comfort', checked: false },
+			{ value: 'Urban Chic', label: 'Urban Chic', checked: false },
+			{ value: 'Nike', label: 'Nike', checked: false },
+			{ value: 'Puma', label: 'Puma', checked: false },
+			{ value: 'Off White', label: 'Off White', checked: false },
+			{
+				value: 'Fashion Timepieces',
+				label: 'Fashion Timepieces',
+				checked: false
+			},
+			{ value: 'Longines', label: 'Longines', checked: false },
+			{ value: 'Rolex', label: 'Rolex', checked: false },
+			{ value: 'Amazon', label: 'Amazon', checked: false }
 		]
 	},
 ];
@@ -222,11 +223,11 @@ const ProductList = () => {
 																						defaultValue={option.value}
 																						type='checkbox'
 																						defaultChecked={option.checked}
-																						className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
+																						className='h-4 w-4 rounded border-gray-300 text-[#42a392] focus:ring-[#42a392'
 																					/>
 																					<label
 																						htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
-																						className='ml-3 min-w-0 flex-1 text-gray-500'
+																						className='ml-3 min-w-0 flex-1 text-gray-500 capitalize'
 																					>
 																						{option.label}
 																					</label>
@@ -382,11 +383,11 @@ const ProductList = () => {
 																			defaultValue={option.value}
 																			type='checkbox'
 																			defaultChecked={option.checked}
-																			className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500'
+																			className='h-4 w-4 rounded border-gray-300 text-[#42a392] focus:ring-[#42a392]'
 																		/>
 																		<label
 																			htmlFor={`filter-${section.id}-${optionIdx}`}
-																			className='ml-3 text-sm text-gray-600'
+																			className='ml-3 text-sm text-gray-600 capitalize'
 																		>
 																			{option.label}
 																		</label>
