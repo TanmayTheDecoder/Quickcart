@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, BaseSyntheticEvent } from 'react';
 import { Fragment } from 'react';
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -111,6 +111,25 @@ const filters = [
 
 const classNames = (...classes: (string | boolean)[]) => {
 	return classes.filter(Boolean).join(' ');
+};
+
+interface Option {
+	value: string;
+	label: string;
+	checked: boolean;
+};
+
+interface Section {
+	id: string;
+	name: string;
+	options: Option[];
+};
+
+const handleFiltration = (e: BaseSyntheticEvent, section: Section, option: Option) => {
+
+	console.log('Event:', e);
+	console.log('Section:', section);
+	console.log('Option:', option);
 };
 
 const ProductList = () => {
@@ -384,6 +403,9 @@ const ProductList = () => {
 																			type='checkbox'
 																			defaultChecked={option.checked}
 																			className='h-4 w-4 rounded border-gray-300 text-[#42a392] focus:ring-[#42a392]'
+																			onClick={(e) => {
+																				handleFiltration(e, section, option)
+																			}}
 																		/>
 																		<label
 																			htmlFor={`filter-${section.id}-${optionIdx}`}
