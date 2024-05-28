@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getProducts } from '@/redux/thunks/products/getProducts';
 import { ActionDispatch, RootState } from '@/redux/store';
+import { getProductsByFilter } from '@/redux/thunks/products/getProductsByFilter';
 
 const sortOptions = [
 	{ name: 'Most Popular', href: '#', current: true },
@@ -125,22 +126,25 @@ interface Section {
 	options: Option[];
 };
 
-const handleFiltration = (e: BaseSyntheticEvent, section: Section, option: Option) => {
 
-	console.log('Event:', e);
-	console.log('Section:', section);
-	console.log('Option:', option);
-};
 
 const ProductList = () => {
 	const dispatch = useDispatch<ActionDispatch>()
 	const { status, products, error } = useSelector((state: RootState) => state.getProducts)
-	const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+	const [mobileFiltersOpen, setMobileFiltersOpen] = useState<boolean>(false);
+	const [filter, setFilter] = useState({})
+	const filteredProducts = useSelector((state: RootState) => state.getProductsByFilter.products)
+	console.log('console_filteredProducts', filteredProducts)
 
 	useEffect(() => {
 		dispatch(getProducts())
 	}, [dispatch])
 
+	const handleFiltration = (e: BaseSyntheticEvent, section: Section, option: Option) => {
+		const newFilter = { ...filter, [section.id]: option.value }
+		setFilter(newFilter)
+		dispatch(getProductsByFilter(newFilter))
+	};
 
 	return (
 		<div>
