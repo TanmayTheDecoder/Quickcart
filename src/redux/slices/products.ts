@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getProducts } from '../thunks/products/getProducts';
+import { getProductsByFilter } from '../thunks/products/getProductsByFilter';
+
 interface ProductsInitial {
 	status: string | null;
 	error: string | null;
@@ -24,6 +26,8 @@ const getProductsSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
+			// * GET PRODUCTS
+			////////////////
 			.addCase(getProducts.pending, (state) => {
 				state.status = 'pending';
 			})
@@ -35,6 +39,22 @@ const getProductsSlice = createSlice({
 				},
 			)
 			.addCase(getProducts.rejected, (state, action) => {
+				state.status = 'Failed';
+				state.error = action.payload as string;
+			})
+			// * GET PRODUCTS BY FILTERS
+			////////////////////////////
+			.addCase(getProductsByFilter.pending, (state) => {
+				state.status = 'pending';
+			})
+			.addCase(
+				getProductsByFilter.fulfilled,
+				(state, action: PayloadAction<ProductsInitial[]>) => {
+					state.status = 'Succeeded';
+					state.products = action.payload;
+				},
+			)
+			.addCase(getProductsByFilter.rejected, (state, action) => {
 				state.status = 'Failed';
 				state.error = action.payload as string;
 			});

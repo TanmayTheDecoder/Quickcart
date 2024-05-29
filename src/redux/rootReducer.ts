@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import getProducts from './slices/getProducts';
-import getProductsByFilter from './slices/getProductsByFilter';
+import products from './slices/products';
 
 export const rootReducer = combineReducers({
-	getProducts: getProducts,
-	getProductsByFilter: getProductsByFilter,
+	products: products,
 });

@@ -126,15 +126,12 @@ interface Section {
 	options: Option[];
 };
 
-
-
 const ProductList = () => {
 	const dispatch = useDispatch<ActionDispatch>()
-	const { status, products, error } = useSelector((state: RootState) => state.getProducts)
+	const { status, products, error } = useSelector((state: RootState) => state.products)
 	const [mobileFiltersOpen, setMobileFiltersOpen] = useState<boolean>(false);
 	const [filter, setFilter] = useState({})
-	const filteredProducts = useSelector((state: RootState) => state.getProductsByFilter.products)
-	console.log('console_filteredProducts', filteredProducts)
+
 
 	useEffect(() => {
 		dispatch(getProducts())
@@ -247,6 +244,9 @@ const ProductList = () => {
 																						type='checkbox'
 																						defaultChecked={option.checked}
 																						className='h-4 w-4 rounded border-gray-300 text-[#42a392] focus:ring-[#42a392'
+																						onClick={(e) => {
+																							handleFiltration(e, section, option)
+																						}}
 																					/>
 																					<label
 																						htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
