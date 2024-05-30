@@ -60,7 +60,7 @@ const filters = [
 		]
 	},
 	{
-		id: 'brands',
+		id: 'brand',
 		name: 'Brands',
 		options: [
 			{ value: 'Essence', label: 'Essence', checked: false },
@@ -148,7 +148,7 @@ const ProductList = () => {
 			<div className='bg-white'>
 				<div className='bg-white'>
 					<div>
-
+						{/* Mobile */}
 						<Transition.Root
 							show={mobileFiltersOpen}
 							as={Fragment}
@@ -270,6 +270,7 @@ const ProductList = () => {
 							</Dialog>
 						</Transition.Root>
 
+						{/* Desktop */}
 						<main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
 							<div className='flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24'>
 								<h1 className='text-4xl font-bold tracking-tight text-gray-900'>
@@ -353,13 +354,6 @@ const ProductList = () => {
 								aria-labelledby='products-heading'
 								className='pb-24 pt-6'
 							>
-								<h2
-									id='products-heading'
-									className='sr-only'
-								>
-									Products
-								</h2>
-
 								<div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4'>
 									{/* Filters */}
 									<form className='hidden lg:block'>
@@ -477,6 +471,8 @@ const ProductList = () => {
 									</div>
 								</div>
 							</section>
+
+							{/* Pagination */}
 							<div className='flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6'>
 								<div className='flex flex-1 justify-between sm:hidden'>
 									<a
