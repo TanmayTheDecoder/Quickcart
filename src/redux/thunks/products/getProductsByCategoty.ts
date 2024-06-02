@@ -1,27 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-interface Filter {
-	[key: string]: string | number | undefined;
-}
-
-export const getProductsByFilter = createAsyncThunk(
+export const getProductsByCategory = createAsyncThunk(
 	'productsSlice/getProductsByFilter',
-	async (filter: Filter, { rejectWithValue }) => {
+	async (category: string, { rejectWithValue }) => {
 		try {
-			let query = '';
-			for (let key in filter) {
-				if (query !== undefined) query += `${key}=${filter[key]}&`;
-			}
-			query = query.slice(0, -1);
 			const response = await axios.get(
-				'http://localhost:8080/products?' + query,
+				`https://dummyjson.com/products/category/${category}`,
 			);
 
 			if (response.status === 200) {
-				return response.data;
+				return response.data.products;
 			} else {
-				return rejectWithValue('Product not found');
+				return rejectWithValue('Products not found');
 			}
 		} catch (err) {
 			if (axios.isAxiosError(err)) {

@@ -19,14 +19,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getProducts } from '@/redux/thunks/products/getProducts';
 import { ActionDispatch, RootState } from '@/redux/store';
-import { getProductsByFilter } from '@/redux/thunks/products/getProductsByFilter';
+import { getProductsByCategory } from '@/redux/thunks/products/getProductsByCategoty';
 
 const sortOptions = [
-	{ name: 'Most Popular', href: '#', current: true },
-	{ name: 'Best Rating', href: '#', current: false },
-	{ name: 'Newest', href: '#', current: false },
-	{ name: 'Price: Low to High', href: '#', current: false },
-	{ name: 'Price: High to Low', href: '#', current: false },
+	{ name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
+	{ name: 'Price: Low to High', sort: 'price', order: 'asc', current: false },
+	{ name: 'Price: High to Low', sort: 'price', order: 'desc', current: false },
 ];
 
 const filters = [
@@ -114,34 +112,32 @@ const classNames = (...classes: (string | boolean)[]) => {
 	return classes.filter(Boolean).join(' ');
 };
 
-interface Option {
-	value: string;
-	label: string;
-	checked: boolean;
+interface SortOption {
+	name: string;
+	sort: string;
+	order: string;
+	current: boolean;
 };
 
-interface Section {
-	id: string;
-	name: string;
-	options: Option[];
-};
 
 const ProductList = () => {
 	const dispatch = useDispatch<ActionDispatch>()
 	const { status, products, error } = useSelector((state: RootState) => state.products)
 	const [mobileFiltersOpen, setMobileFiltersOpen] = useState<boolean>(false);
 	const [filter, setFilter] = useState({})
-
+	const [category, setCategory] = useState<string>('')
 
 	useEffect(() => {
 		dispatch(getProducts())
 	}, [dispatch])
 
-	const handleFiltration = (e: BaseSyntheticEvent, section: Section, option: Option) => {
-		const newFilter = { ...filter, [section.id]: option.value }
-		setFilter(newFilter)
-		dispatch(getProductsByFilter(newFilter))
-	};
+	const handleSorting = (e: BaseSyntheticEvent) => { }
+
+	const handleFilters = (e: BaseSyntheticEvent) => {
+		const { value } = e.target;
+		setCategory(value)
+		dispatch(getProductsByCategory(value))
+	}
 
 	return (
 		<div>
@@ -244,8 +240,9 @@ const ProductList = () => {
 																						type='checkbox'
 																						defaultChecked={option.checked}
 																						className='h-4 w-4 rounded border-gray-300 text-[#42a392] focus:ring-[#42a392'
-																						onClick={(e) => {
-																							handleFiltration(e, section, option)
+																						onChange={(e) => {
+																							// handleFiltration(e, section, option)
+																							handleFilters(e)
 																						}}
 																					/>
 																					<label
@@ -307,13 +304,13 @@ const ProductList = () => {
 														<Menu.Item key={option.name}>
 															{({ active }) => (
 																<a
-																	href={option.href}
+																	onClick={(e) => handleSorting(e)}
 																	className={classNames(
 																		option.current
 																			? 'font-medium text-gray-900'
 																			: 'text-gray-500',
 																		active ? 'bg-gray-100' : '',
-																		'block px-4 py-2 text-sm',
+																		'block px-4 py-2 text-sm cursor-pointer',
 																	)}
 																>
 																	{option.name}
@@ -401,8 +398,9 @@ const ProductList = () => {
 																			type='checkbox'
 																			defaultChecked={option.checked}
 																			className='h-4 w-4 rounded border-gray-300 text-[#42a392] focus:ring-[#42a392]'
-																			onClick={(e) => {
-																				handleFiltration(e, section, option)
+																			onChange={(e) => {
+																				// handleFiltration(e, section, option)
+																				handleFilters(e)
 																			}}
 																		/>
 																		<label
