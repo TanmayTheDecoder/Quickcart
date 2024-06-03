@@ -19,12 +19,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getProducts } from '@/redux/thunks/products/getProducts';
 import { ActionDispatch, RootState } from '@/redux/store';
-import { getProductsByCategory } from '@/redux/thunks/products/getProductsByCategoty';
+import { getProductsByCategory } from '@/redux/thunks/products/getProductsByCategory'
+import { sortProducts } from '@/redux/thunks/products/sortProducts';
 
 const sortOptions = [
-	{ name: 'Best Rating', sort: 'rating', order: 'desc', current: false },
-	{ name: 'Price: Low to High', sort: 'price', order: 'asc', current: false },
-	{ name: 'Price: High to Low', sort: 'price', order: 'desc', current: false },
+	{ name: 'Best Rating', sortBy: 'rating', order: 'desc', current: false },
+	{ name: 'Price: Low to High', sortBy: 'price', order: 'asc', current: false },
+	{ name: 'Price: High to Low', sortBy: 'price', order: 'desc', current: false },
 ];
 
 const filters = [
@@ -114,7 +115,7 @@ const classNames = (...classes: (string | boolean)[]) => {
 
 interface SortOption {
 	name: string;
-	sort: string;
+	sortBy: string;
 	order: string;
 	current: boolean;
 };
@@ -131,7 +132,11 @@ const ProductList = () => {
 		dispatch(getProducts())
 	}, [dispatch])
 
-	const handleSorting = (e: BaseSyntheticEvent) => { }
+	const handleSorting = (e: BaseSyntheticEvent, option: SortOption) => {
+		const sortFilter = { ...filter, sortBy: option.sortBy, order: option.order }
+		setFilter(sortFilter)
+		dispatch(sortProducts(filter))
+	}
 
 	const handleFilters = (e: BaseSyntheticEvent) => {
 		const { value } = e.target;
@@ -303,8 +308,8 @@ const ProductList = () => {
 													{sortOptions.map((option) => (
 														<Menu.Item key={option.name}>
 															{({ active }) => (
-																<a
-																	onClick={(e) => handleSorting(e)}
+																<p
+																	onClick={(e) => handleSorting(e, option)}
 																	className={classNames(
 																		option.current
 																			? 'font-medium text-gray-900'
@@ -314,7 +319,7 @@ const ProductList = () => {
 																	)}
 																>
 																	{option.name}
-																</a>
+																</p>
 															)}
 														</Menu.Item>
 													))}

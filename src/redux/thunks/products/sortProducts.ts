@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios, { isAxiosError } from 'axios';
+import axios from 'axios';
 
 interface Filter {
 	[key: string]: string;
@@ -11,13 +11,19 @@ export const sortProducts = createAsyncThunk(
 		try {
 			let query = '';
 			for (let key in filter) {
-				query += `$[key] = ${filter[key]}&`;
+				query += `${key}=${filter[key]}&`;
 			}
 			query = query.slice(0, -1);
 
 			const response = await axios.get(
-				'https://dummyjson.com/products?limit=100',
+				`${process.env.NEXT_PUBLIC_API_URL}?limit=100&` + query,
 			);
+
+			if (response.status === 200) {
+				return response.data.products;
+			} else {
+				return rejectWithValue('Error while sorting products');
+			}
 		} catch (err) {
 			if (axios.isAxiosError(err)) {
 				return (

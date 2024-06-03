@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getProducts } from '../thunks/products/getProducts';
-import { getProductsByCategory } from '../thunks/products/getProductsByCategoty';
+import { getProductsByCategory } from '@/redux/thunks/products/getProductsByCategory';
+import { sortProducts } from '../thunks/products/sortProducts';
 interface ProductsInitial {
 	status: string | null;
 	error: string | null;
@@ -56,6 +57,20 @@ const getProductsSlice = createSlice({
 			.addCase(getProductsByCategory.rejected, (state, action) => {
 				state.status = 'Failed';
 				state.error = action.payload as string;
+			})
+			// * SORT PRODUCTS
+			//////////////////
+			.addCase(sortProducts.pending, (state) => {
+				state.status = 'pending';
+			})
+			.addCase(
+				sortProducts.fulfilled,
+				(state, action: PayloadAction<ProductsInitial[]>) => {
+					(state.status = 'Succeeded'), (state.products = action.payload);
+				},
+			)
+			.addCase(sortProducts.rejected, (state, action) => {
+				(state.status = 'Failed'), (state.error = action.payload as string);
 			});
 	},
 });
