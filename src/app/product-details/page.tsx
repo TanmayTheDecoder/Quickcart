@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import ProductDetails from '@/components/Product/ProductDetails'
 import Navbar from '@/components/includes/Navbar'

@@ -1,4 +1,3 @@
-'use client';
 import ProductList from '@/components/Product/ProductList';
 import Navbar from '@/components/includes/Navbar';
 import React from 'react';
