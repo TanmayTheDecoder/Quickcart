@@ -139,114 +139,111 @@ const ProductList = () => {
 	}
 
 	const handleFilters = (e: BaseSyntheticEvent) => {
-		const { value } = e.target;
+		const { value, checked } = e.target;
 		setCategory(value)
-		dispatch(getProductsByCategory(value))
+		checked ? dispatch(getProductsByCategory(value)) : dispatch(getProducts())
 	}
 
 	return (
 		<div>
 			<div className='bg-white'>
 				<div className='bg-white'>
-					<div>
+					<MobileFilters mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={() => setMobileFiltersOpen(!mobileFiltersOpen)} handleFilters={(e) => {
+						handleFilters(e)
+					}} />
 
-						<MobileFilters mobileFiltersOpen={mobileFiltersOpen} setMobileFiltersOpen={() => setMobileFiltersOpen} handleFilters={(e) => {
-							handleFilters(e)
-						}} />
+					<main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
+						<div className='flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24'>
+							<h1 className='text-4xl font-bold tracking-tight text-gray-900'>
+								New Arrivals
+							</h1>
 
-						<main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-							<div className='flex items-baseline justify-between border-b border-gray-200 pb-6 pt-24'>
-								<h1 className='text-4xl font-bold tracking-tight text-gray-900'>
-									New Arrivals
-								</h1>
+							<div className='flex items-center'>
+								<Menu
+									as='div'
+									className='relative inline-block text-left'
+								>
+									<div>
+										<Menu.Button className='group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900'>
+											Sort
+											<ChevronDownIcon
+												className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500'
+												aria-hidden='true'
+											/>
+										</Menu.Button>
+									</div>
 
-								<div className='flex items-center'>
-									<Menu
-										as='div'
-										className='relative inline-block text-left'
+									<Transition
+										as={Fragment}
+										enter='transition ease-out duration-100'
+										enterFrom='transform opacity-0 scale-95'
+										enterTo='transform opacity-100 scale-100'
+										leave='transition ease-in duration-75'
+										leaveFrom='transform opacity-100 scale-100'
+										leaveTo='transform opacity-0 scale-95'
 									>
-										<div>
-											<Menu.Button className='group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900'>
-												Sort
-												<ChevronDownIcon
-													className='-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500'
-													aria-hidden='true'
-												/>
-											</Menu.Button>
-										</div>
+										<Menu.Items className='absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none'>
+											<div className='py-1'>
+												{sortOptions.map((option) => (
+													<Menu.Item key={option.name}>
+														{({ active }) => (
+															<p
+																onClick={(e) => handleSorting(e, option)}
+																className={classNames(
+																	option.current
+																		? 'font-medium text-gray-900'
+																		: 'text-gray-500',
+																	active ? 'bg-gray-100' : '',
+																	'block px-4 py-2 text-sm cursor-pointer',
+																)}
+															>
+																{option.name}
+															</p>
+														)}
+													</Menu.Item>
+												))}
+											</div>
+										</Menu.Items>
+									</Transition>
+								</Menu>
 
-										<Transition
-											as={Fragment}
-											enter='transition ease-out duration-100'
-											enterFrom='transform opacity-0 scale-95'
-											enterTo='transform opacity-100 scale-100'
-											leave='transition ease-in duration-75'
-											leaveFrom='transform opacity-100 scale-100'
-											leaveTo='transform opacity-0 scale-95'
-										>
-											<Menu.Items className='absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none'>
-												<div className='py-1'>
-													{sortOptions.map((option) => (
-														<Menu.Item key={option.name}>
-															{({ active }) => (
-																<p
-																	onClick={(e) => handleSorting(e, option)}
-																	className={classNames(
-																		option.current
-																			? 'font-medium text-gray-900'
-																			: 'text-gray-500',
-																		active ? 'bg-gray-100' : '',
-																		'block px-4 py-2 text-sm cursor-pointer',
-																	)}
-																>
-																	{option.name}
-																</p>
-															)}
-														</Menu.Item>
-													))}
-												</div>
-											</Menu.Items>
-										</Transition>
-									</Menu>
-
-									<button
-										type='button'
-										className='-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7'
-									>
-										<span className='sr-only'>View grid</span>
-										<Squares2X2Icon
-											className='h-5 w-5'
-											aria-hidden='true'
-										/>
-									</button>
-									<button
-										type='button'
-										className='-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden'
-										onClick={() => setMobileFiltersOpen(true)}
-									>
-										<span className='sr-only'>Filters</span>
-										<FunnelIcon
-											className='h-5 w-5'
-											aria-hidden='true'
-										/>
-									</button>
-								</div>
+								<button
+									type='button'
+									className='-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7'
+								>
+									<span className='sr-only'>View grid</span>
+									<Squares2X2Icon
+										className='h-5 w-5'
+										aria-hidden='true'
+									/>
+								</button>
+								<button
+									type='button'
+									className='-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden'
+									onClick={() => setMobileFiltersOpen(true)}
+								>
+									<span className='sr-only'>Filters</span>
+									<FunnelIcon
+										className='h-5 w-5'
+										aria-hidden='true'
+									/>
+								</button>
 							</div>
+						</div>
 
-							<section
-								aria-labelledby='products-heading'
-								className='pb-24 pt-6'
-							>
-								<div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4'>
-									<DesktopFilters handleFilters={(e) => { handleFilters(e) }} />
+						<section
+							aria-labelledby='products-heading'
+							className='pb-24 pt-6'
+						>
+							<div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4'>
+								<DesktopFilters handleFilters={(e) => { handleFilters(e) }} />
 
-									<ProductGrid products={products} />
-								</div>
-							</section>
+								<ProductGrid products={products} />
+							</div>
+						</section>
 
-							<Pagination />
-						</main>
-					</div>
+						<Pagination />
+					</main>
 				</div>
 			</div>
 		</div>
@@ -260,6 +257,7 @@ interface MobileFiltersProps {
 	setMobileFiltersOpen: () => void;
 	handleFilters: (e: BaseSyntheticEvent) => void;
 }
+
 const MobileFilters: React.FC<MobileFiltersProps> = ({ mobileFiltersOpen, setMobileFiltersOpen, handleFilters }) => {
 
 	return (
@@ -303,7 +301,7 @@ const MobileFilters: React.FC<MobileFiltersProps> = ({ mobileFiltersOpen, setMob
 									<button
 										type='button'
 										className='-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400'
-										onClick={() => setMobileFiltersOpen()}
+										onClick={setMobileFiltersOpen}
 									>
 										<span className='sr-only'>Close menu</span>
 										<XMarkIcon
