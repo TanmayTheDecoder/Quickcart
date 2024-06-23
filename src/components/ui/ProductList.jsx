@@ -21,6 +21,7 @@ import {
 	PlusIcon,
 	Squares2X2Icon,
 } from '@heroicons/react/20/solid';
+import Pagination from '../common/Pagination';
 
 const sortOptions = [
 	{ name: 'Most Popular', href: '#', current: true },
@@ -35,7 +36,7 @@ const filters = [
 		id: 'category',
 		name: 'Category',
 		options: [
-			{ value: 'new-arrivals', label: 'New Arrivals', checked: false },
+			{ value: 'new-arrivals', label: 'Products', checked: false },
 			{ value: 'sale', label: 'Sale', checked: false },
 			{ value: 'travel', label: 'Travel', checked: true },
 			{ value: 'organization', label: 'Organization', checked: false },
@@ -195,9 +196,9 @@ const ProductList = () => {
 					</Dialog>
 
 					<main className='mx-auto max-w-7xl px-4 sm:px-6 lg:px-8'>
-						<div className='flex items-baseline justify-between border-b border-gray-200 pb-6 pt-16'>
+						<div className='flex xxs:flex-col sm:flex-row xxs:gap-2.5 items-baseline justify-between border-b border-gray-200 pb-6 xxs:pt-5 sm:pt-11 lg:pt-16'>
 							<h1 className='text-4xl font-bold tracking-tight text-gray-900'>
-								New Arrivals
+								Products
 							</h1>
 
 							<div className='flex items-center'>
@@ -268,7 +269,7 @@ const ProductList = () => {
 
 						<section
 							aria-labelledby='products-heading'
-							className='pb-24 pt-6'
+							className='xxs:pb-5 sm:pb-10 pt-6'
 						>
 							<h2
 								id='products-heading'
@@ -345,9 +346,7 @@ const ProductList = () => {
 								<div className='lg:col-span-3'>
 									<div className='bg-white'>
 										<div className='mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8'>
-											<h2 className='sr-only'>Products</h2>
-
-											<div className='grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8'>
+											<div className='grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 xxs:mb-5'>
 												{products.map((product) => (
 													<a
 														key={product.id}
@@ -374,6 +373,7 @@ const ProductList = () => {
 									</div>
 								</div>
 							</div>
+							<Pagination />
 						</section>
 					</main>
 				</div>

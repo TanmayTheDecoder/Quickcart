@@ -1,3 +1,4 @@
+import logo from '../../assets/Icons/logo.svg';
 import {
 	Disclosure,
 	DisclosureButton,
@@ -7,7 +8,11 @@ import {
 	MenuItem,
 	MenuItems,
 } from '@headlessui/react';
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+	Bars3Icon,
+	ShoppingBagIcon,
+	XMarkIcon,
+} from '@heroicons/react/24/outline';
 
 const navigation = [
 	{ name: 'Dashboard', href: '#', current: true },
@@ -51,9 +56,10 @@ const Navbar = () => {
 							<div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'>
 								<div className='flex flex-shrink-0 items-center'>
 									<img
-										className='h-8 w-auto'
-										src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500'
-										alt='Your Company'
+										src={logo}
+										alt='your website logo'
+										loading='lazy'
+										className='xxs:w-[110px] md:w-[120px] lg:w-[140px] xl:w-[150px]'
 									/>
 								</div>
 								<div className='hidden sm:ml-6 sm:block'>
@@ -81,12 +87,13 @@ const Navbar = () => {
 									type='button'
 									className='relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
 								>
-									<span className='absolute -inset-1.5' />
-									<span className='sr-only'>View notifications</span>
-									<BellIcon
+									<ShoppingBagIcon
 										className='h-6 w-6'
 										aria-hidden='true'
 									/>
+									<span className='absolute top-0 right-0 -mt-1 -mr-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-[#FFBF5D] text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20'>
+										1
+									</span>
 								</button>
 
 								{/* Profile dropdown */}
