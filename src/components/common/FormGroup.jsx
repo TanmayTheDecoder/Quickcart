@@ -11,8 +11,10 @@ const FormGroup = ({
 	onChange,
 	type,
 	name,
+	register,
 	value,
 	isInvalid,
+	error,
 	placeholder,
 	isRequired,
 	...props
@@ -27,9 +29,10 @@ const FormGroup = ({
 				value={value}
 				placeContent={placeholder}
 				isRequired={isRequired}
+				{...register(name)}
 				{...props}
 			/>
-			{isInvalid && <FormErrorMessage>{isInvalid}</FormErrorMessage>}
+			{isInvalid && <FormErrorMessage>{error}</FormErrorMessage>}
 		</FormControl>
 	);
 };
