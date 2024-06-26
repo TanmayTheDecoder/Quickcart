@@ -17,6 +17,7 @@ const FormGroup = ({
 	error,
 	placeholder,
 	isRequired,
+	ringColor,
 	...props
 }) => {
 	return (
@@ -31,6 +32,7 @@ const FormGroup = ({
 				isRequired={isRequired}
 				{...register(name)}
 				{...props}
+				focusBorderColor={error || isInvalid ? '#EA6E6E' : ringColor}
 			/>
 			{isInvalid && <FormErrorMessage>{error}</FormErrorMessage>}
 		</FormControl>

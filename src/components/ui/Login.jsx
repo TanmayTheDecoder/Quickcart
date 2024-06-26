@@ -4,9 +4,11 @@ import FormGroup from '../common/FormGroup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import FilledButton from '../common/Button';
+import { Toast, showToast } from '../common/Toast';
 
 const Login = () => {
-	const formValidationSchema = yup.object.shape({
+	const formValidationSchema = yup.object().shape({
 		email: yup.string().required('Email is required').email('Email is invalid'),
 		password: yup
 			.string()
@@ -18,6 +20,14 @@ const Login = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm({ resolver: yupResolver(formValidationSchema), mode: 'all' });
+
+	const onSubmit = (data) => {
+		if (Object.keys(data).length > 0) {
+			showToast('Login successful', 'success');
+		} else {
+			showToast('Login failed', 'error');
+		}
+	};
 
 	return (
 		<div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8'>
@@ -36,7 +46,11 @@ const Login = () => {
 			</div>
 
 			<div className='mt-10 sm:mx-auto sm:w-full sm:max-w-sm'>
-				<form className='space-y-6'>
+				<form
+					className='space-y-6'
+					onSubmit={handleSubmit(onSubmit)}
+					method='POST'
+				>
 					<FormGroup
 						label='Email'
 						name='email'
@@ -45,56 +59,41 @@ const Login = () => {
 						isInvalid={!!errors.email}
 						type='text'
 						placeholder='Email address'
+						ringColor='#009B7D'
 					/>
 
-					<div>
-						<div className='flex items-center justify-between'>
-							<label
-								htmlFor='password'
-								className='block text-sm font-medium leading-6 text-gray-900'
-							>
-								Password
-							</label>
-							<div className='text-sm'>
-								<a
-									href='#'
-									className='font-semibold text-indigo-600 hover:text-indigo-500'
-								>
-									Forgot password?
-								</a>
-							</div>
-						</div>
-						<div className='mt-2'>
-							<input
-								id='password'
-								name='password'
-								type='password'
-								autoComplete='current-password'
-								required
-								className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-							/>
-						</div>
-					</div>
+					<FormGroup
+						label='Password'
+						name='password'
+						placeholder='Password'
+						register={register}
+						error={errors.password?.message}
+						isInvalid={!!errors.password}
+						type='password'
+						ringColor='#009B7D'
+					/>
 
-					<div>
-						<button
-							type='submit'
-							className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-						>
-							Sign in
-						</button>
-					</div>
+					<FilledButton
+						type='submit'
+						text='Login'
+						className='w-full'
+						bgColor='#009B7D'
+						textColor='#fff'
+						_hoverColor='#277e6d'
+					/>
 				</form>
 
 				<p className='mt-10 text-center text-sm text-gray-500'>
 					Not a member?{' '}
 					<a
 						href='#'
-						className='font-semibold leading-6 text-indigo-600 hover:text-indigo-500'
+						className='font-semibold leading-6 text-[#009B7D] hover:text-[#277e6d]'
 					>
-						Start a 14 day free trial
+						Create account
 					</a>
 				</p>
+
+				<Toast />
 			</div>
 		</div>
 	);
