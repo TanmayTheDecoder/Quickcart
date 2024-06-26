@@ -6,9 +6,9 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FilledButton from '../common/Button';
 import { Toast, showToast } from '../common/Toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Signup = () => {
 	const navigate = useNavigate();
 	const formValidationSchema = yup.object().shape({
 		email: yup.string().required('Email is required').email('Email is invalid'),
@@ -16,6 +16,10 @@ const Login = () => {
 			.string()
 			.required('Password is required')
 			.min(6, 'Password should contain 6 characters'),
+		confirmPassword: yup
+			.string()
+			.required('Confirm password is required')
+			.oneOf([yup.ref('password'), null], 'Passwords must match'),
 	});
 	const {
 		register,
@@ -25,10 +29,10 @@ const Login = () => {
 
 	const onSubmit = (data) => {
 		if (Object.keys(data).length > 0) {
-			navigate('/dashboard');
-			showToast('Login successful', 'success');
+			navigate('/');
+			showToast('Registration successful', 'success');
 		} else {
-			showToast('Login failed', 'error');
+			showToast('Registration failed', 'error');
 		}
 	};
 
@@ -44,7 +48,7 @@ const Login = () => {
 					/>
 				</div>
 				<h2 className='mt-6 text-center text-2xl font-semibold leading-9 tracking-tight text-gray-900'>
-					Sign in to your account
+					Create your account
 				</h2>
 			</div>
 
@@ -76,9 +80,20 @@ const Login = () => {
 						ringColor='#009B7D'
 					/>
 
+					<FormGroup
+						label='Confirm Password'
+						name='confirmPassword'
+						placeholder='Confirm password'
+						register={register}
+						error={errors.confirmPassword?.message}
+						isInvalid={!!errors.confirmPassword}
+						type='password'
+						ringColor='#009B7D'
+					/>
+
 					<FilledButton
 						type='submit'
-						text='Login'
+						text='Register'
 						className='w-full'
 						bgColor='#009B7D'
 						textColor='#fff'
@@ -87,18 +102,19 @@ const Login = () => {
 				</form>
 
 				<p className='mt-10 text-center text-sm text-gray-500'>
-					Not a member?{' '}
-					<a
-						href='#'
+					Already a member?{' '}
+					<Link
+						to='/'
 						className='font-semibold leading-6 text-[#009B7D] hover:text-[#277e6d]'
 					>
-						Create account
-					</a>
+						Login
+					</Link>
 				</p>
 
+				<Toast />
 			</div>
 		</div>
 	);
 };
 
-export default Login;
+export default Signup;
