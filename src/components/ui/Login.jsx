@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FilledButton from '../common/Button';
 import { Toast, showToast } from '../common/Toast';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -88,14 +88,10 @@ const Login = () => {
 
 				<p className='mt-10 text-center text-sm text-gray-500'>
 					Not a member?{' '}
-					<a
-						href='#'
-						className='font-semibold leading-6 text-[#009B7D] hover:text-[#277e6d]'
-					>
+					<Link to='/signup' className='font-semibold leading-6 text-[#009B7D] hover:text-[#277e6d]'>
 						Create account
-					</a>
+					</Link>
 				</p>
-
 			</div>
 		</div>
 	);

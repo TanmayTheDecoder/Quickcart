@@ -5,12 +5,13 @@ import ProductList from './components/ui/ProductList';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Toast } from './components/common/Toast';
 import Signup from './components/ui/Signup';
+import Cart from './components/ui/Cart';
 
 function App() {
 	const location = useLocation();
 	const pathName = location.pathname;
 
-	const renderNavbar = () => {
+	const renderIncludes = () => {
 		switch (pathName) {
 			case '/':
 				return null;
@@ -24,7 +25,7 @@ function App() {
 	return (
 		<>
 			<Toast />
-			{renderNavbar()}
+			{renderIncludes()}
 			<Routes>
 				<Route
 					path='/'
@@ -37,6 +38,10 @@ function App() {
 				<Route
 					path='/signUp'
 					element={<Signup />}
+				/>
+				<Route
+					path='/cart'
+					element={<Cart />}
 				/>
 			</Routes>
 		</>
