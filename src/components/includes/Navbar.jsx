@@ -13,6 +13,7 @@ import {
 	ShoppingBagIcon,
 	XMarkIcon,
 } from '@heroicons/react/24/outline';
+import { Link } from 'react-router-dom';
 
 const navigation = [
 	{ name: 'Dashboard', href: '#', current: true },
@@ -83,8 +84,8 @@ const Navbar = () => {
 								</div>
 							</div>
 							<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
-								<button
-									type='button'
+								<Link
+									to='/cart'
 									className='relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
 								>
 									<ShoppingBagIcon
@@ -94,7 +95,7 @@ const Navbar = () => {
 									<span className='absolute top-0 right-0 -mt-1 -mr-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-[#FFBF5D] text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20'>
 										1
 									</span>
-								</button>
+								</Link>
 
 								{/* Profile dropdown */}
 								<Menu
