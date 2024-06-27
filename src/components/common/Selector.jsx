@@ -1,12 +1,13 @@
 import React from 'react';
 import { Select } from '@chakra-ui/react';
 
-const Select = ({ options, placeholder, ...rest }) => {
+const Selector = ({ options, placeholder, className, ringColor, ...rest }) => {
 	return (
 		<>
 			<Select
 				{...rest}
-				placeholder={placeholder}
+				className={className}
+				focusBorderColor={ringColor}
 			>
 				{Array.isArray(options) &&
 					options.map((option) => (
@@ -22,4 +23,4 @@ const Select = ({ options, placeholder, ...rest }) => {
 	);
 };
 
-export default Select;
+export default Selector;

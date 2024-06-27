@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FilledButton from '../common/Button';
 import { Link } from 'react-router-dom';
+import Select from '../common/Selector';
 
 const products = [
 	{
@@ -28,6 +29,17 @@ const products = [
 			'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
 	},
 	// More products...
+];
+
+const options = [
+	{
+		label: 1,
+		value: 1,
+	},
+	{
+		label: 2,
+		value: 2,
+	},
 ];
 
 const Cart = () => {
@@ -67,7 +79,15 @@ const Cart = () => {
 											</p>
 										</div>
 										<div className='flex flex-1 items-end justify-between text-sm'>
-											<p className='text-gray-500'>Qty {product.quantity}</p>
+											<div className='flex items-center gap-2'>
+												<p className='text-gray-500'>Qty</p>
+												<Select
+													className='pt-0 cursor-pointer'
+													key={product.id}
+													options={options}
+													ringColor='#009B7D'
+												/>
+											</div>
 
 											<div className='flex'>
 												<FilledButton
