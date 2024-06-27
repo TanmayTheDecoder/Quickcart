@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import FilledButton from '../common/Button';
 import { Link } from 'react-router-dom';
-import Select from '../common/Selector';
+import Selector from '../common/Selector';
 
 const products = [
 	{
@@ -46,7 +45,7 @@ const Cart = () => {
 	return (
 		<>
 			<div className='container mx-auto max-w-5xl px-4 sm:px-6 lg:px-8'>
-				<h2 className='text-2xl my-5 font-semibold'>Your bag</h2>
+				<h2 className='text-2xl my-5 font-semibold'>Items in your cart</h2>
 				<div className='border-t border-gray-200 px-4 py-6 sm:px-6'>
 					<div className='flow-root'>
 						<ul
@@ -81,7 +80,7 @@ const Cart = () => {
 										<div className='flex flex-1 items-end justify-between text-sm'>
 											<div className='flex items-center gap-2'>
 												<p className='text-gray-500'>Qty</p>
-												<Select
+												<Selector
 													className='pt-0 cursor-pointer'
 													key={product.id}
 													options={options}

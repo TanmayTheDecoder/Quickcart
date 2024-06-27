@@ -6,6 +6,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { Toast } from './components/common/Toast';
 import Signup from './components/ui/Signup';
 import Cart from './components/ui/Cart';
+import Checkout from './components/ui/Checkout';
 
 function App() {
 	const location = useLocation();
@@ -42,6 +43,10 @@ function App() {
 				<Route
 					path='/cart'
 					element={<Cart />}
+				/>
+				<Route
+					path='/checkout'
+					element={<Checkout />}
 				/>
 			</Routes>
 		</>
