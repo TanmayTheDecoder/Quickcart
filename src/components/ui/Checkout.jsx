@@ -2,7 +2,10 @@ import React from 'react';
 import Selector from '../common/Selector';
 import FilledButton from '../common/Button';
 import { Link } from 'react-router-dom';
-
+import FormGroup from '../common/FormGroup';
+import { useForm, Controller } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 const products = [
 	{
 		id: 1,
@@ -43,6 +46,19 @@ const options = [
 ];
 
 const Checkout = () => {
+	const formValidationSchema = yup.object().shape({
+		email: yup.string().required('Email is required').email('Email is invalid'),
+		streetAddress: yup.string().required('Street address is required'),
+	});
+
+	const {
+		handleSubmit,
+		register,
+		formState: { errors },
+		control,
+	} = useForm({
+		mode: 'all',
+	});
 	return (
 		<>
 			<div className='grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-12'>
@@ -59,21 +75,13 @@ const Checkout = () => {
 
 								<div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
 									<div className='sm:col-span-3'>
-										<label
-											htmlFor='first-name'
-											className='block text-sm font-medium leading-6 text-gray-900'
-										>
-											First name
-										</label>
-										<div className='mt-2'>
-											<input
-												type='text'
-												name='first-name'
-												id='first-name'
-												autoComplete='given-name'
-												className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-											/>
-										</div>
+										<FormGroup
+											register={register}
+											label='First name'
+											type='text'
+											name='firstName'
+											ringColor='#009B7D'
+										/>
 									</div>
 
 									<div className='sm:col-span-3'>
@@ -113,24 +121,11 @@ const Checkout = () => {
 									</div>
 
 									<div className='sm:col-span-3'>
-										<label
-											htmlFor='country'
-											className='block text-sm font-medium leading-6 text-gray-900'
-										>
-											Country
-										</label>
-										<div className='mt-2'>
-											<select
-												id='country'
-												name='country'
-												autoComplete='country-name'
-												className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6'
-											>
-												<option>United States</option>
-												<option>Canada</option>
-												<option>Mexico</option>
-											</select>
-										</div>
+										<Controller control={control} />
+										{/* <Selector
+											name='country'
+											options={options}
+										/> */}
 									</div>
 
 									<div className='col-span-full'>
@@ -253,7 +248,6 @@ const Checkout = () => {
 													Card
 												</label>
 											</div>
-											
 										</div>
 									</fieldset>
 								</div>

@@ -28,7 +28,7 @@ const FormGroup = ({
 				type={type}
 				name={name}
 				value={value}
-				placeContent={placeholder}
+				placeholder={placeholder}
 				isRequired={isRequired}
 				{...register(name)}
 				{...props}
