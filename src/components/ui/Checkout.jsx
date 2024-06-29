@@ -6,56 +6,13 @@ import FormGroup from '../common/FormGroup';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-const products = [
-	{
-		id: 1,
-		name: 'Throwback Hip Bag',
-		href: '#',
-		color: 'Salmon',
-		price: '$90.00',
-		quantity: 1,
-		imageSrc:
-			'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg',
-		imageAlt:
-			'Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.',
-	},
-	{
-		id: 2,
-		name: 'Medium Stuff Satchel',
-		href: '#',
-		color: 'Blue',
-		price: '$32.00',
-		quantity: 1,
-		imageSrc:
-			'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg',
-		imageAlt:
-			'Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.',
-	},
-	// More products...
-];
-
-const countryOptions = [
-	{
-		label: 'India',
-		value: 'India',
-	},
-	{
-		label: 'Canada',
-		value: 'Canada',
-	},
-];
-
-const quantity = [
-	{
-		label: 1,
-		value: 1,
-	},
-	{
-		label: 2,
-		value: 2,
-	},
-];
+import {
+	countryOptions,
+	products,
+	quantity,
+	paymentOptions,
+} from '../../utils';
+import RadioButton from '../common/RadioButton';
 
 const Checkout = () => {
 	const formValidationSchema = yup.object().shape({
@@ -206,34 +163,11 @@ const Checkout = () => {
 												Choose from:
 											</p>
 											<div className='mt-6 space-y-2.5'>
-												<div className='flex items-center gap-x-3'>
-													<input
-														id='push-everything'
-														name='push-notifications'
-														type='radio'
-														className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
-													/>
-													<label
-														htmlFor='push-everything'
-														className='block text-sm font-medium leading-6 text-gray-900'
-													>
-														Cash
-													</label>
-												</div>
-												<div className='flex items-center gap-x-3'>
-													<input
-														id='push-email'
-														name='push-notifications'
-														type='radio'
-														className='h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600'
-													/>
-													<label
-														htmlFor='push-email'
-														className='block text-sm font-medium leading-6 text-gray-900'
-													>
-														Card
-													</label>
-												</div>
+												<RadioButton
+													options={paymentOptions}
+													name='paymentOptions'
+													register={register}
+												/>
 											</div>
 										</fieldset>
 									</div>
