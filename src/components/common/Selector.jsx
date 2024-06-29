@@ -1,40 +1,22 @@
 import React from 'react';
-import { FormControl, Select, FormErrorMessage } from '@chakra-ui/react';
+import { Controller } from 'react-hook-form';
+import {
+	Select,
+	FormLabel,
+	FormControl,
+	FormErrorMessage,
+} from '@chakra-ui/react';
 
-const Selector = ({
-	options,
-	onChange,
-	placeholder,
-	className,
-	ringColor,
-	name,
-	isInvalid,
-	error,
-	...rest
-}) => {
+const Selector = ({ isInvalid, label, control, rules }) => {
 	return (
 		<>
 			<FormControl isInvalid={isInvalid}>
-				<Select
-					className={className}
-					focusBorderColor={ringColor}
-					name={name}
-					onChange={(e) => {
-						onChange(e);
-					}}
-					{...rest}
-				>
-					{Array.isArray(options) &&
-						options.map((option) => (
-							<option
-								key={option.value}
-								value={option.value}
-							>
-								{option.label}
-							</option>
-						))}
-				</Select>
-				{isInvalid && <FormErrorMessage>{error}</FormErrorMessage>}
+				<FormLabel>{label}</FormLabel>
+				<Controller
+					control={control}
+					rules={rules}
+					render={({ field }) => null} //* Start here
+				/>
 			</FormControl>
 		</>
 	);

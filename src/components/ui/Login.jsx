@@ -88,7 +88,10 @@ const Login = () => {
 
 				<p className='mt-10 text-center text-sm text-gray-500'>
 					Not a member?{' '}
-					<Link to='/signup' className='font-semibold leading-6 text-[#009B7D] hover:text-[#277e6d]'>
+					<Link
+						to='/signup'
+						className='font-semibold leading-6 text-[#009B7D] hover:text-[#277e6d]'
+					>
 						Create account
 					</Link>
 				</p>

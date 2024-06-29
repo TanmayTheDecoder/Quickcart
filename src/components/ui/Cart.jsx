@@ -80,12 +80,12 @@ const Cart = () => {
 										<div className='flex flex-1 items-end justify-between text-sm'>
 											<div className='flex items-center gap-2'>
 												<p className='text-gray-500'>Qty</p>
-												<Selector
+												{/* <Selector
 													className='pt-0 cursor-pointer'
 													key={product.id}
 													options={options}
 													ringColor='#009B7D'
-												/>
+												/> */}
 											</div>
 
 											<div className='flex'>
@@ -111,8 +111,8 @@ const Cart = () => {
 					<p className='mt-0.5 text-sm text-gray-500'>
 						Shipping and taxes calculated at checkout.
 					</p>
-					<div className='mt-6'>
-						<Link className='flex justify-center'>
+					<div className='flex justify-end gap-5 items-center py-5'>
+						<Link to='/checkout' className='flex justify-center'>
 							<FilledButton
 								text='Checkout'
 								className='w-max'
@@ -121,20 +121,17 @@ const Cart = () => {
 								_hoverColor='#277e6d'
 							/>
 						</Link>
-					</div>
-					<div className='mt-2.5 flex flex-col gap-2.5 justify-center text-center text-sm text-gray-500'>
 						<p>or </p>
-						<div className='flex justify-center'>
-							<Link to='/dashboard'>
-								<FilledButton
-									text='Continue shopping'
-									className='w-max'
-									bgColor='#009B7D'
-									textColor='#fff'
-									_hoverColor='#277e6d'
-								/>
-							</Link>
-						</div>
+
+						<Link to='/dashboard'>
+							<FilledButton
+								text='Continue shopping'
+								className='w-max'
+								bgColor='#009B7D'
+								textColor='#fff'
+								_hoverColor='#277e6d'
+							/>
+						</Link>
 					</div>
 				</div>
 			</div>
