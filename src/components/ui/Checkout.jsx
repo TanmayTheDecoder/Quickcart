@@ -91,7 +91,7 @@ const Checkout = () => {
 						>
 							<div className='space-y-5'>
 								<div className='border-b border-gray-900/10 pb-5'>
-									<h2 className='text-base font-semibold leading-7 text-gray-900'>
+									<h2 className='text-base text-xl font-semibold leading-7 text-gray-900'>
 										Personal Information
 									</h2>
 									<p className='mt-1 text-sm leading-6 text-gray-600'>
@@ -333,9 +333,9 @@ const Checkout = () => {
 								</p>
 
 								<div className='flex justify-center items-center py-5'>
-									<Link to='/dashboard'>
+									<Link to='/payment'>
 										<FilledButton
-											text='Continue shopping'
+											text='Continue to payment'
 											className='w-max'
 											bgColor='#009B7D'
 											textColor='#fff'
