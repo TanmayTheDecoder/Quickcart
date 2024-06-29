@@ -57,3 +57,20 @@ export const paymentOptions = [
 		value: 'Card',
 	},
 ];
+
+export const addressData = [
+	{
+		name: 'Adam Smith',
+		street: 'Lane 34',
+		city: 'Vancouver',
+		pinCode: '123435',
+		state: 'Vancouver',
+	},
+	{
+		name: 'John Doe',
+		street: 'Suite 30',
+		city: 'Toronto',
+		pinCode: '435123',
+		state: 'Toronto',
+	},
+];

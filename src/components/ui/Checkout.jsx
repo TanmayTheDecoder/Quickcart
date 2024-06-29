@@ -11,6 +11,7 @@ import {
 	products,
 	quantity,
 	paymentOptions,
+	addressData,
 } from '../../utils';
 import RadioButton from '../common/RadioButton';
 
@@ -146,6 +147,26 @@ const Checkout = () => {
 									</div>
 								</div>
 
+								<div className='mt-2.5 flex items-center justify-end gap-x-6'>
+									<FilledButton
+										onClick={() => clearErrors()}
+										type='reset'
+										text='Cancel'
+										className='w-max'
+										bgColor='tomato'
+										textColor='#fff'
+										_hoverColor='#F7755E'
+									/>
+									<FilledButton
+										type='submit'
+										text='Add'
+										className='w-max'
+										bgColor='#009B7D'
+										textColor='#fff'
+										_hoverColor='#277e6d'
+									/>
+								</div>
+
 								<div className='border-b border-gray-900/10 pb-5'>
 									<h2 className='text-base font-semibold leading-7 text-gray-900'>
 										Address
@@ -153,6 +174,37 @@ const Checkout = () => {
 									<p className='mt-1 text-sm leading-6 text-gray-600'>
 										Choose from existing
 									</p>
+
+									<ul
+										role='list'
+										className='divide-y divide-gray-100'
+									>
+										{addressData.map((address, index) => (
+											<li
+												key={index}
+												className='flex justify-between gap-x-6 py-5'
+											>
+												<div className='flex min-w-0 gap-x-4'>
+													<div className='min-w-0 flex-auto'>
+														<p className='text-sm font-semibold leading-6 text-gray-900'>
+															{address.name}
+														</p>
+														<p className='mt-1 truncate text-xs leading-5 text-gray-500'>
+															{address.street}
+														</p>
+													</div>
+												</div>
+												<div className='hidden shrink-0 sm:flex sm:flex-col sm:items-end'>
+													<p className='text-sm leading-6 text-gray-900'>
+														{address.state}
+													</p>
+													<p className='text-sm leading-6 text-gray-900'>
+														{address.pinCode}
+													</p>
+												</div>
+											</li>
+										))}
+									</ul>
 
 									<div className='mt-5 space-y-10'>
 										<fieldset>
@@ -172,26 +224,6 @@ const Checkout = () => {
 										</fieldset>
 									</div>
 								</div>
-							</div>
-
-							<div className='mt-2.5 flex items-center justify-end gap-x-6'>
-								<FilledButton
-									onClick={() => clearErrors()}
-									type='reset'
-									text='Cancel'
-									className='w-max'
-									bgColor='tomato'
-									textColor='#fff'
-									_hoverColor='#F7755E'
-								/>
-								<FilledButton
-									type='submit'
-									text='Save'
-									className='w-max'
-									bgColor='#009B7D'
-									textColor='#fff'
-									_hoverColor='#277e6d'
-								/>
 							</div>
 						</form>
 					</div>
