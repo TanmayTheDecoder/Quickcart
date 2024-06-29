@@ -35,7 +35,18 @@ const products = [
 	// More products...
 ];
 
-const options = [
+const countryOptions = [
+	{
+		label: 'India',
+		value: 'India',
+	},
+	{
+		label: 'Canada',
+		value: 'Canada',
+	},
+];
+
+const quantity = [
 	{
 		label: 1,
 		value: 1,
@@ -50,10 +61,8 @@ const Checkout = () => {
 	const formValidationSchema = yup.object().shape({
 		email: yup.string().required('Email is required').email('Email is invalid'),
 		streetAddress: yup.string().required('Street address is required'),
-		country: yup
-			.string()
-			.required('Country is required')
-			.oneOf(options.map((option) => option.value)),
+		country: yup.string().required('Country is required'),
+		city: yup.string().required('City is required'),
 	});
 
 	const {
@@ -61,6 +70,7 @@ const Checkout = () => {
 		register,
 		formState: { errors },
 		control,
+		clearErrors,
 	} = useForm({
 		mode: 'all',
 		resolver: yupResolver(formValidationSchema),
@@ -99,7 +109,6 @@ const Checkout = () => {
 												placeholder='First name'
 											/>
 										</div>
-
 										<div className='sm:col-span-3'>
 											<FormGroup
 												register={register}
@@ -110,32 +119,29 @@ const Checkout = () => {
 												placeholder='Last name'
 											/>
 										</div>
-
 										<div className='sm:col-span-4'>
 											<FormGroup
-												register={register}
-												label='Email *'
-												type='email'
+												label='Email'
 												name='email'
-												ringColor='#009B7D'
+												register={register}
 												error={errors.email?.message}
 												isInvalid={!!errors.email}
+												type='text'
 												placeholder='Email address'
+												ringColor='#009B7D'
 											/>
 										</div>
-
 										<div className='sm:col-span-3'>
 											<Selector
-											// options={options}
-											// ringColor='#009B7D'
-											name='country'
-											// errors={errors.country?.message}
-											isInvalid={!!errors.country}
-											label='Select country*'
-											control={control}
-										/>
+												options={countryOptions}
+												ringColor='#009B7D'
+												name='country'
+												errors={errors.country?.message}
+												isInvalid={!!errors.country}
+												label='Select country*'
+												control={control}
+											/>
 										</div>
-
 										<div className='col-span-full'>
 											<FormGroup
 												register={register}
@@ -148,59 +154,37 @@ const Checkout = () => {
 												placeholder='Street address'
 											/>
 										</div>
-
 										<div className='sm:col-span-2 sm:col-start-1'>
-											<label
-												htmlFor='city'
-												className='block text-sm font-medium leading-6 text-gray-900'
-											>
-												City
-											</label>
-											<div className='mt-2'>
-												<input
-													type='text'
-													name='city'
-													id='city'
-													autoComplete='address-level2'
-													className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-												/>
-											</div>
+											<FormGroup
+												register={register}
+												label='City*'
+												type='text'
+												name='city'
+												ringColor='#009B7D'
+												error={errors.city?.message}
+												isInvalid={!!errors.city}
+												placeholder='Your city'
+											/>
 										</div>
-
 										<div className='sm:col-span-2'>
-											<label
-												htmlFor='region'
-												className='block text-sm font-medium leading-6 text-gray-900'
-											>
-												State / Province
-											</label>
-											<div className='mt-2'>
-												<input
-													type='text'
-													name='region'
-													id='region'
-													autoComplete='address-level1'
-													className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-												/>
-											</div>
+											<FormGroup
+												register={register}
+												label='State / Province'
+												type='text'
+												name='state'
+												ringColor='#009B7D'
+												placeholder='Your state'
+											/>
 										</div>
-
 										<div className='sm:col-span-2'>
-											<label
-												htmlFor='postal-code'
-												className='block text-sm font-medium leading-6 text-gray-900'
-											>
-												ZIP / Postal code
-											</label>
-											<div className='mt-2'>
-												<input
-													type='text'
-													name='postal-code'
-													id='postal-code'
-													autoComplete='postal-code'
-													className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
-												/>
-											</div>
+											<FormGroup
+												register={register}
+												label='ZIP'
+												type='text'
+												name='state'
+												ringColor='#009B7D'
+												placeholder='zip code'
+											/>
 										</div>
 									</div>
 								</div>
@@ -258,6 +242,8 @@ const Checkout = () => {
 
 							<div className='mt-2.5 flex items-center justify-end gap-x-6'>
 								<FilledButton
+									onClick={() => clearErrors()}
+									type='reset'
 									text='Cancel'
 									className='w-max'
 									bgColor='tomato'
@@ -314,11 +300,12 @@ const Checkout = () => {
 													<div className='flex flex-1 items-end justify-between text-sm'>
 														<div className='flex items-center gap-2'>
 															<p className='text-gray-500'>Qty</p>
-															{/* <Selector
-															key={product.id}
-															options={options}
-															ringColor='#009B7D'
-														/> */}
+															<Selector
+																options={quantity}
+																ringColor='#009B7D'
+																name='quantity'
+																control={control}
+															/>
 														</div>
 
 														<div className='flex'>
@@ -345,18 +332,7 @@ const Checkout = () => {
 									Shipping and taxes calculated at checkout.
 								</p>
 
-								<div className='flex justify-center gap-5 items-center py-5'>
-									<Link className='flex justify-center'>
-										<FilledButton
-											text='Checkout'
-											className='w-max'
-											bgColor='#009B7D'
-											textColor='#fff'
-											_hoverColor='#277e6d'
-										/>
-									</Link>
-									<p>or </p>
-
+								<div className='flex justify-center items-center py-5'>
 									<Link to='/dashboard'>
 										<FilledButton
 											text='Continue shopping'

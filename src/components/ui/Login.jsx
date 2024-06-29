@@ -55,7 +55,7 @@ const Login = () => {
 					method='POST'
 				>
 					<FormGroup
-						label='Email'
+						label='Email*'
 						name='email'
 						register={register}
 						error={errors.email?.message}
@@ -66,7 +66,7 @@ const Login = () => {
 					/>
 
 					<FormGroup
-						label='Password'
+						label='Password*'
 						name='password'
 						placeholder='Password'
 						register={register}
