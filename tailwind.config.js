@@ -12,6 +12,9 @@ export default {
 				xl: '1280px',
 				'2xl': '1440px',
 			},
+			gridTemplateRows: {
+				'[auto,auto,1fr]': 'auto auto 1fr',
+			},
 		},
 	},
 	plugins: [

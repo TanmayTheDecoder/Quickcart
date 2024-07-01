@@ -21,7 +21,8 @@ import {
 	PlusIcon,
 	Squares2X2Icon,
 } from '@heroicons/react/20/solid';
-import Pagination from '../common/Pagination';
+import Pagination from '../../common/Pagination';
+import { Link } from 'react-router-dom';
 
 const sortOptions = [
 	{ name: 'Most Popular', href: '#', current: true },
@@ -347,10 +348,10 @@ const ProductList = () => {
 									<div className='bg-white'>
 										<div className='mx-auto max-w-2xl px-4 sm:px-6 lg:max-w-7xl lg:px-8'>
 											<div className='grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 xxs:mb-5'>
-												{products.map((product) => (
-													<a
-														key={product.id}
-														href={product.href}
+												{products.map((product, index) => (
+													<Link
+														key={index}
+														to='/product-details'
 														className='group'
 													>
 														<div className='aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7'>
@@ -366,7 +367,7 @@ const ProductList = () => {
 														<p className='mt-1 text-lg font-medium text-gray-900'>
 															{product.price}
 														</p>
-													</a>
+													</Link>
 												))}
 											</div>
 										</div>
