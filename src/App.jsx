@@ -1,5 +1,3 @@
-import './App.css';
-import Navbar from './components/includes/Navbar';
 import Login from './components/ui/Login';
 import ProductList from './components/ui/products/ProductList';
 import { Routes, Route, useLocation } from 'react-router-dom';

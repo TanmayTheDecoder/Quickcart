@@ -56,12 +56,14 @@ const Navbar = () => {
 							</div>
 							<div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'>
 								<div className='flex flex-shrink-0 items-center'>
-									<img
-										src={logo}
-										alt='your website logo'
-										loading='lazy'
-										className='xxs:w-[110px] md:w-[120px] lg:w-[140px] xl:w-[150px]'
-									/>
+									<Link to='/dashboard'>
+										<img
+											src={logo}
+											alt='your website logo'
+											loading='lazy'
+											className='xxs:w-[110px] md:w-[120px] lg:w-[140px] xl:w-[150px]'
+										/>
+									</Link>
 								</div>
 								<div className='hidden sm:ml-6 sm:block'>
 									<div className='flex space-x-4'>
